@@ -11,6 +11,7 @@ def json_get(path='http://gsx2json.com/api?id=1BRDrKF9anTLPBBN5e3n_g2S0FTiiCFfPG
     data_spreadsheet = json.loads(response.text)
     data_db = data_spreadsheet['rows']
     d = []
+    
     for i in data_db:
         d.append(dict(
             name=i["название"],

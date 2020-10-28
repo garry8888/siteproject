@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0742b42-20c1-4485-9c48-940a47559169" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gsite/settings/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/gsite/settings/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gsite/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/gsite/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory/api_spreadsheets/google_spreadsheets_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/factory/api_spreadsheets/google_spreadsheets_api.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
