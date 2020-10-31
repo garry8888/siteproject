@@ -4,13 +4,15 @@ from django.db import models
 class Currency(models.Model):
     name = models.CharField(max_length=100)
     abbreviation = models.CharField(max_length=50)
-    symbol = models.CharField(max_length=100, null=True)
+    #symbol = models.CharField(max_length=100, null=True)
     index = models.PositiveIntegerField(null=True)
 
 
 class Countries(models.Model):
     country = models.CharField(max_length=100)
-    index = models.PositiveIntegerField(null=True)
+    #country_en = models.CharField(max_length=100)
+    #abbreviation = models.CharField(max_length=50)
+    index_c = models.PositiveIntegerField(null=True)
     currency = models.ForeignKey(Currency, on_delete=models.CASCADE)
 
 
