@@ -21,7 +21,8 @@ class Places(models.Model):
 
 
 class MoneyTransaction(models.Model):
-    type_transaction = models.CharField(max_length=50)
+    type_transaction_en = models.CharField(max_length=50)
+    type_transaction_ua = models.CharField(max_length=50)
 
 
 class BankStatements(models.Model):
@@ -31,6 +32,7 @@ class BankStatements(models.Model):
     sum_transaction = models.DecimalField(max_digits=20, decimal_places=2)
     currency = models.ForeignKey(Currency, on_delete=models.CASCADE)
     country = models.ForeignKey(Countries, on_delete=models.CASCADE)
-    date_of_trans = models.DateTimeField(null=True)
+    date_of_trans = models.DateField(null=True)
+    date_created = models.DateTimeField(auto_now_add=True)
 
 
