@@ -9,19 +9,29 @@ class Currency(models.Model):
 
 
 class Countries(models.Model):
-    country = models.CharField(max_length=100)
-    #country_en = models.CharField(max_length=100)
-    #abbreviation = models.CharField(max_length=50)
-    index_c = models.PositiveIntegerField(null=True)
+    country_ru = models.CharField(max_length=100)
+    country_ua = models.CharField(max_length=100, null=True)
+    country_en = models.CharField(max_length=100, null=True)
+    abbreviation = models.CharField(max_length=50, null=True)
+    iso = models.PositiveIntegerField(null=True)
     currency = models.ForeignKey(Currency, on_delete=models.CASCADE)
 
 
 class Places(models.Model):
-    type_place = models.CharField(max_length=100)
+    type_place_ua = models.CharField(max_length=100)
+    type_place_ru = models.CharField(max_length=100)
+    type_place_en = models.CharField(max_length=100)
+
+
+class TypeExpenses(models.Model):
+    type_expenses_ua = models.CharField(max_length=100)
+    type_expenses_ru = models.CharField(max_length=100, null=True)
+    type_expenses_en = models.CharField(max_length=100)
 
 
 class MoneyTransaction(models.Model):
     type_transaction_en = models.CharField(max_length=50)
+    type_transaction_ru = models.CharField(max_length=50, null=True)
     type_transaction_ua = models.CharField(max_length=50)
 
 
