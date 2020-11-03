@@ -1,5 +1,4 @@
 from django.db import models
-from finance.models import TypeExpenses
 
 
 # банковская выписка в оригинале

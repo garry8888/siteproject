@@ -41,7 +41,7 @@ def append_country(func=json_get()):
         try:
             country = Countries.objects.get(country_ru=i["наименование"])
             country.country_en = i["наанглийском"]
-            country.abbreviation = i["alpha2"]
+            country.abbreviation = i["alpha3"]
             country.iso = i["iso"]
             country.save()
         except ObjectDoesNotExist:

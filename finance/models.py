@@ -37,11 +37,11 @@ class MoneyTransaction(models.Model):
 
 class BankStatements(models.Model):
     transaction_place = models.CharField(max_length=200)
-    type_place = models.ForeignKey(Places, on_delete=models.CASCADE, null=True)
+    type_expenses = models.ForeignKey(TypeExpenses, on_delete=models.CASCADE, null=True)
     type_transaction = models.ForeignKey(MoneyTransaction, on_delete=models.CASCADE)
     sum_transaction = models.DecimalField(max_digits=20, decimal_places=2)
-    currency = models.ForeignKey(Currency, on_delete=models.CASCADE)
-    country = models.ForeignKey(Countries, on_delete=models.CASCADE)
+    currency = models.ForeignKey(Currency, on_delete=models.CASCADE, null=True)
+    country = models.ForeignKey(Countries, on_delete=models.CASCADE, null=True)
     date_of_trans = models.DateField(null=True)
     date_created = models.DateTimeField(auto_now_add=True)
 
