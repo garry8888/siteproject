@@ -19,6 +19,5 @@ from django.urls import path, include
 urlpatterns = [
     path('grafic_matplotlib/', include('grafic_matplotlib.urls')),
     path('finance/', include('finance.urls')),
-    path('polls/', include('polls.urls')),
     path('admin/', admin.site.urls, name='sets'),
 ]
