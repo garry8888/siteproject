@@ -4,3 +4,5 @@ django-modeltranslation==0.15.1
 psycopg2-binary==2.8.5
 django-silk==4.0.1
 rollbar==0.15.0
+matplotlib==3.3.2
+django-matplotlib==0.1
