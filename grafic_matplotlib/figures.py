@@ -24,7 +24,7 @@ def pie():
 
     fig1, ax1 = plt.subplots()
     ax1.pie(sizes, labels=labels, autopct='%1.1f%%',
-            shadow=False, startangle=90)
+            shadow=False, startangle=120)
     ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
     return fig1
