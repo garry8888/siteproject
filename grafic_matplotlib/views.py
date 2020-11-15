@@ -15,10 +15,10 @@ def index_p(request):
     return render(request, 'grafic_matplotlib/pie.html',
                   context={'pie': pie_view})
 
-    """
-    pie_view = Pie.objects.all()
 
-    return render(request, 'grafic_matplotlib/pie.html',
-                  context={'pie': [view.figure for view in pie_view]})
-    """
+def index_d(request):
+    return render(request, 'grafic_matplotlib/diagram.html', {})
 
+
+def index_plan(request):
+    return render(request, 'grafic_matplotlib/planning.html', {})
