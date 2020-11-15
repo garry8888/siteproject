@@ -1,0 +1,22 @@
+header {
+    flex-direction: column;
+    padding: 15px 30px;
+    justify-content: flex-start;
+}
+#header {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 45px;
+    background: #202122;
+    color: #ebeb0e;
+    overflow: hidden;
+}
+h3 a {
+    color: #FCA025;
+}
+body {
+    padding-left: 15px;
+}

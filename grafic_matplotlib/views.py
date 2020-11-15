@@ -1,8 +1,24 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-# Create your views here.
+from grafic_matplotlib.figures import pie
+from grafic_matplotlib.models import Pie
 
 
 def index(request):
-    return HttpResponse("Diagrams here")
+    return render(request, 'grafic_matplotlib/analytics.html', {})
+
+
+def index_p(request):
+    pie_view = pie()
+
+    return render(request, 'grafic_matplotlib/pie.html',
+                  context={'pie': pie_view})
+
+
+def index_d(request):
+    return render(request, 'grafic_matplotlib/diagram.html', {})
+
+
+def index_plan(request):
+    return render(request, 'grafic_matplotlib/planning.html', {})

@@ -3,15 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="c0742b42-20c1-4485-9c48-940a47559169" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gsite/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/gsite/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/polls/views.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/analytics.html" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/analytics.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +16,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -36,6 +31,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../logging" />
   </component>
@@ -147,5 +143,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="556" y="155" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1605217587992" />
+    <state x="674" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1605433678331">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="674" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1605433678331" />
   </component>
 </project>
