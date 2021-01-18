@@ -8,3 +8,7 @@ class Diagram(models.Model):
 
 class Pie(models.Model):
     figure = MatplotlibFigureField(figure='pie')
+
+
+class Line(models.Model):
+    figure = MatplotlibFigureField(figure='line_chart')

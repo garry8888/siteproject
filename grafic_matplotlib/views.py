@@ -13,7 +13,7 @@ def index_p(request):
     pie_view = pie()
 
     return render(request, 'grafic_matplotlib/pie.html',
-                  context={'pie': pie_view})
+                  context={'index_p': pie_view})
 
 
 def index_d(request):

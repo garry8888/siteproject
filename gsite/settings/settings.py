@@ -63,7 +63,7 @@ ROOT_URLCONF = 'gsite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['.venv/Lib/site-packages/django_matplotlib/templates/widgets/matplotlib.html'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
