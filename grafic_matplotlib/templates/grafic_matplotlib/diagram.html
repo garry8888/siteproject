@@ -1,31 +1,5 @@
-{% load static %}
-<html>
-    <head>
-        <title>Pie</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="{% static 'css/grafic_matplotlib.css' %}">
-    </head>
-        <div id="header">
-            <div id="branding">
-                <h1 id="site-name">Home expense analytics</h1>
-                <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-                <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-                <link rel="stylesheet" href="{% static 'css/grafic_matplotlib.css' %}">
-            </div>
-        <div id="user-tools">
-            Welcome,
-            <strong>username</strong>.
-            <a href="/analytics/">View site</a> /
-            <a href="">Change password</a> /
-            <a href="">Log out</a>
-        </div>
-    <div class="breadcrumbs">
-        <a href="/analytics/">Главная</a>
-        › Диаграммы
-    </div>
-</div>
-    <body>
+{% extends "grafic_matplotlib/wrapper.html" %}
+{% block content %}
         <div>
             <h1><strong>График расходов будет тут</strong></h1>
         </div>
@@ -40,5 +14,4 @@
                 </div>
             </fieldset>
         </div>
-    </body>
-</html>
+{% endblock %}
