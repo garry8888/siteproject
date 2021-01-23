@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0742b42-20c1-4485-9c48-940a47559169" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/includes/table.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/diagram.html" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/diagram.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/pie.html" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/pie.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/analytics/query_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/analytics/query_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/includes/table.html" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/includes/table.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/planning.html" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/planning.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grafic_matplotlib/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
