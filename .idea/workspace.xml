@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0742b42-20c1-4485-9c48-940a47559169" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/grafic_matplotlib/static/css/table.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/includes/table.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/static/css/grafic_matplotlib.css" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/static/css/wrapper.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/includes/pie_fig.html" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/includes/pie_fig.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/diagram.html" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/diagram.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/pie.html" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/pie.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/wrapper.html" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/wrapper.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grafic_matplotlib/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,6 +23,13 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="hiddenUrls">
+      <set>
+        <option value="https://github.com/Anton1912/siteproject.git" />
+      </set>
+    </option>
   </component>
   <component name="ProjectId" id="1i67P3jwB2cfRy1OMksIWHYptuD" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
