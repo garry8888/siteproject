@@ -1,8 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-
 from grafic_matplotlib.figures import pie
-from grafic_matplotlib.models import Pie
 
 
 def index(request):
