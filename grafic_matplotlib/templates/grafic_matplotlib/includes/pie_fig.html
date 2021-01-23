@@ -1,10 +1,1 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<img src="data:image/png;base64,{{ figure.source }}" {% if figure.width %} width="{{ figure.width }}" {% endif %} {% if figure.height %} height="{{ figure.height }}" {% endif %} />

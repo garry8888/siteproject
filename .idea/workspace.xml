@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0742b42-20c1-4485-9c48-940a47559169" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/gsite/templates/admin/base_site.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/includes/pie_fig.html" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/includes/pie_fig.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/gsite/settings/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/gsite/settings/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -14,8 +14,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -32,18 +32,20 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/gsite/templates/admin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/gsite/templates" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Антон\Desktop\Project\siteproject\gsite\templates" />
       <recent name="C:\Users\Антон\Desktop\Project\siteproject\gsite\templates\admin" />
+      <recent name="C:\Users\Антон\Desktop\Project\siteproject\grafic_matplotlib\templates\figures" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Антон\Desktop\Project\siteproject\grafic_matplotlib\templates\grafic_matplotlib\include" />
       <recent name="C:\Users\Антон\Desktop\Project\siteproject\grafic_matplotlib\static\html" />
       <recent name="C:\Users\Антон\Desktop\Project\siteproject\grafic_matplotlib" />
       <recent name="C:\Users\Антон\Desktop\Project\siteproject\grafic_matplotlib\analytics" />
       <recent name="C:\Users\Антон\Desktop\Project\siteproject\gsite\settings" />
-      <recent name="C:\Users\Антон\Desktop\Project\siteproject\gsite" />
     </key>
   </component>
   <component name="RunManager" selected="Python.figures">
