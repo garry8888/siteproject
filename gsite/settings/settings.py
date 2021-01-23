@@ -63,7 +63,8 @@ ROOT_URLCONF = 'gsite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': ['templates/admin/',
+                 'grafic_matplotlib/templates/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
