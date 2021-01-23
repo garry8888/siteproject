@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from grafic_matplotlib.figures import pie
+from grafic_matplotlib.models import Pie
 
 
 def index(request):
@@ -7,10 +8,9 @@ def index(request):
 
 
 def index_p(request):
-    pie_view = pie()
+    pie_p = Pie.figure.source
 
-    return render(request, 'grafic_matplotlib/pie.html',
-                  context={'index_p': pie_view})
+    return render(request, 'grafic_matplotlib/pie.html', {'pie_fig': pie_p})
 
 
 def index_d(request):
