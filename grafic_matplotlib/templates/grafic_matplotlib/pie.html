@@ -15,73 +15,7 @@
                 </div>
             </fieldset>
             <div>
-                <table id="t01">
-                    <caption>
-                        <h3>Месячные расходы</h3>
-                    </caption>
-                    <tr>
-                        <th>Статья расходов</th>
-                        <th>Сумма расходов, грн.</th>
-                        <th>Доля расходов, %</th>
-                    </tr>
-                    <tr>
-                        <td>Продукты</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Хозрасходы</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>АвтоМото</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>АЗС</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Одежда</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Хорека</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Медицина</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Коммунальные расходы</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Отпуск</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Развлечения</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Другое</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    {% load static %}
-                    <link rel="stylesheet" href="{% static 'css/table.css' %}">
-                </table>
+                {% include "grafic_matplotlib/includes/table.html" %}
             </div>
         </div>
 {% endblock %}
