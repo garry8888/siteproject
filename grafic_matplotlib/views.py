@@ -1,6 +1,5 @@
 from django.shortcuts import render
-from grafic_matplotlib.figures import pie
-from grafic_matplotlib.models import Pie
+from grafic_matplotlib.models import Pie, Diagram
 
 
 def index(request):
@@ -14,7 +13,9 @@ def index_p(request):
 
 
 def index_d(request):
-    return render(request, 'grafic_matplotlib/diagram.html', {})
+    diagram = Diagram.figure.source
+
+    return render(request, 'grafic_matplotlib/diagram.html', {'diagram_fig': diagram})
 
 
 def index_plan(request):
