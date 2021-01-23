@@ -32,7 +32,7 @@ def amount_expenses():
         if all_expenses['sum_t'] is not None:
             t_expenses.append(dict(
                 type_expenses_ru=exp.type_expenses_ru,
-                total_amount=all_expenses['sum_t'] / 100
+                total_amount=all_expenses['sum_t']
             ))
 
     return t_expenses
