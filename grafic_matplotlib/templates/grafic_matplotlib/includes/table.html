@@ -8,60 +8,18 @@
                         <th>Сумма расходов, грн.</th>
                         <th>Доля расходов, %</th>
                     </tr>
+                    {% for data in amount_expenses %}
+                    {% for k, v in data.items %}
                     <tr>
-                        <td>Продукты</td>
-                        <td></td>
-                        <td></td>
+                        <td>{{k}}</td>
+                        <td>{{v}}</td>
+                        <td>%</td>
                     </tr>
+                    {% endfor %}{% endfor %}
                     <tr>
-                        <td>Хозрасходы</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>АвтоМото</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>АЗС</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Одежда</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Хорека</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Медицина</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Коммунальные расходы</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Отпуск</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Развлечения</td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>Другое</td>
-                        <td></td>
-                        <td></td>
+                        <td><strong>Total</strong></td>
+                        <td><strong>{{sum_expenses}}</strong></td>
+                        <td>100%</td>
                     </tr>
                     {% load static %}
                     <link rel="stylesheet" href="{% static 'css/table.css' %}">
