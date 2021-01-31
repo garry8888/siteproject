@@ -7,13 +7,14 @@ from matplotlib.lines import Line2D
 
 from grafic_matplotlib.analytics.query_data import sum_expenses
 
-
+#тест
 def test_figure():
     figure, ax = plt.subplots()
     ax.plot([1, 3, 4, 6, 8], [3, 2, 5, 10, 8])
     return figure
 
 
+#статический пирог в админке джанго
 def pie_figure(s_day='2020-10-01', e_day='2020-10-20'):
     data = sum_expenses(start=s_day, end=e_day)
     labels = []
@@ -33,6 +34,7 @@ def pie_figure(s_day='2020-10-01', e_day='2020-10-20'):
     return fig1
 
 
+#статическая диаграмма в админке джанго
 def line_chart():
     cmap = plt.cm.coolwarm
 
