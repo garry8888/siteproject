@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Currency(models.Model):
@@ -44,5 +45,6 @@ class BankStatements(models.Model):
     country = models.ForeignKey(Countries, on_delete=models.CASCADE, null=True)
     date_of_trans = models.DateField(null=True)
     date_created = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
 

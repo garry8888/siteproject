@@ -65,7 +65,8 @@ def load_bank_statements_data(path='http://gsx2json.com/api?id=1BRDrKF9anTLPBBN5
         d.append(dict(
             purpose=i["призначення"],
             amount=numbers(i["сума"]),
-            date_operation=datetime.strptime(i["датаоперації"], "%d.%m.%Y")
+            date_operation=datetime.strptime(i["датаоперації"], "%d.%m.%Y"),
+            user=i['user']
         ))
 
     BankStatementsData.objects.bulk_create([BankStatementsData(**r) for r in d])
