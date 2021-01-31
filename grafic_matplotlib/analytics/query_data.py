@@ -2,14 +2,15 @@ from django.db.models import Sum
 from finance.models import BankStatements, TypeExpenses
 
 
-def sum_expenses():
+def sum_expenses(start, end):
     expenses = TypeExpenses.objects.all()
     t_expenses = []
-    total_expenses = BankStatements.objects.filter(type_transaction_id=1).\
+    total_expenses = BankStatements.objects.filter(type_transaction_id=1, date_of_trans__range=[start, end]).\
         aggregate(sum_t=Sum('sum_transaction'))
 
     for exp in expenses:
-        all_expenses = BankStatements.objects.filter(type_expenses=exp.id, type_transaction_id=1).\
+        all_expenses = BankStatements.objects.filter(type_expenses=exp.id, type_transaction_id=1,
+                                                     date_of_trans__range=[start, end]).\
             aggregate(sum_t=Sum('sum_transaction'))
 
         if all_expenses['sum_t'] is not None:
@@ -21,12 +22,13 @@ def sum_expenses():
     return t_expenses
 
 
-def amount_expenses():
+def amount_expenses(start, end):
     expenses = TypeExpenses.objects.all()
     t_expenses = []
 
     for exp in expenses:
-        all_expenses = BankStatements.objects.filter(type_expenses=exp.id, type_transaction_id=1).\
+        all_expenses = BankStatements.objects.filter(type_expenses=exp.id, type_transaction_id=1,
+                                                     date_of_trans__range=[start, end]).\
             aggregate(sum_t=Sum('sum_transaction'))
 
         if all_expenses['sum_t'] is not None:

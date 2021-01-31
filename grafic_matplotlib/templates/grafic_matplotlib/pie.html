@@ -3,13 +3,17 @@
         <div>
             <h1><strong>Доля расходов %</strong></h1>
         </div>
-
+            <form method="POST" class="post-form">{% csrf_token %}
+                {{ form }}
+                <button type="submit" class="save btn btn-default">Ok</button>
+                {{ debug }}
+            </form>
         <div>
             <fieldset class="module aligned ", style="width:100%">
                 <div class="form-row field-figure">
                     <div>
                         <label for="id_figure">
-                            <img src="data:image/png;base64, {{pie_fig}}" width="800px" height="560px" class="img-thumbnail">
+                            <img src="data:image/png;base64, {{pie_fig|safe}}" width="800px" height="560px" class="img-thumbnail">
                         </label>
                     </div>
                 </div>
