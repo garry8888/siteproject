@@ -1,5 +1,5 @@
 from datetime import datetime, date
-
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 from grafic_matplotlib.core.forms import Calendar
@@ -35,11 +35,12 @@ def expenses_per_category(s, e):
     return amnt_expenses
 
 
-
+@login_required(login_url='/users/login/')
 def index(request):
     return render(request, 'grafic_matplotlib/analytics.html', {})
 
 
+@login_required(login_url='/users/login/')
 def index_p(request):
     pie_p = Pie.figure.source
 
@@ -62,6 +63,7 @@ def index_p(request):
                                                           'form': form})
 
 
+@login_required(login_url='/users/login/')
 def index_d(request):
     diagram = Diagram.figure.source
 
@@ -83,6 +85,7 @@ def index_d(request):
                                                           'form': form})
 
 
+@login_required(login_url='/users/login/')
 def index_plan(request):
     if request.method == 'POST':
         form = Calendar(request.POST)
