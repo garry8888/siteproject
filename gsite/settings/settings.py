@@ -36,6 +36,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = [
+    'users.apps.UsersConfig',
     'grafic_matplotlib.apps.MatplotlibConfig',
     'factory.apps.FactoryConfig',
     'finance.apps.FinanceConfig',
@@ -46,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_matplotlib',
+    'crispy_forms'
 ]
 
 MIDDLEWARE = [
@@ -60,10 +62,14 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'gsite.urls'
 
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates/admin/',
+                 'grafic_matplotlib/templates/',
+                 'users/templates/users/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -104,6 +110,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+LOGIN_REDIRECT_URL = '/analytics/'
 
 
 # Internationalization

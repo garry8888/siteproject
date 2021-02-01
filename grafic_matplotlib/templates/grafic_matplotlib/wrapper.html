@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/wrapper.css' %}">
+    </head>
+        <div id="header">
+            <div id="branding">
+                <h1 id="site-name">Home expense analytics</h1>
+                <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+                <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+                <link rel="stylesheet" href="{% static 'css/wrapper.css' %}">
+            </div>
+        <div id="user-tools">
+            Welcome,
+            <em>username</em>.
+            <a href="/users/password-change/">Change password</a> /
+            <a href="/users/login/">Log in</a> /
+            <a href="/users/logout/">Log out</a>
+        </div>
+    <div class="breadcrumbs">
+        <a href="/analytics/">Главная</a>
+    </div>
+</div>
+    <body>
+        {% block content %}
+        {% endblock %}
+    </body>
+</html>

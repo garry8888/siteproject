@@ -1,0 +1,27 @@
+{% block content %}
+                <table id="t01">
+                    <caption>
+                        <h3>Месячные расходы</h3>
+                    </caption>
+                    <tr>
+                        <th>Статья расходов</th>
+                        <th>Сумма расходов, грн.</th>
+                        <th>Доля расходов, %</th>
+                    </tr>
+                    {% for data in amount_expenses %}
+                    {% for k, v in data.items %}
+                    <tr>
+                        <td>{{k}}</td>
+                        <td>{{v}}</td>
+                        <td>%</td>
+                    </tr>
+                    {% endfor %}{% endfor %}
+                    <tr>
+                        <td><strong>Total</strong></td>
+                        <td><strong>{{sum_expenses}}</strong></td>
+                        <td><strong>100%</strong></td>
+                    </tr>
+                    {% load static %}
+                    <link rel="stylesheet" href="{% static 'css/table.css' %}">
+                </table>
+{% endblock %}

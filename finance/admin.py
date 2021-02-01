@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import TypeExpenses, BankStatements, MoneyTransaction
 
-# Register your models here.
+admin.site.register(TypeExpenses)
+admin.site.register(BankStatements)
+admin.site.register(MoneyTransaction)

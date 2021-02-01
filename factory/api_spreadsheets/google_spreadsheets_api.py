@@ -1,3 +1,5 @@
+from django.contrib.auth.models import User
+
 from finance.models import Currency, Countries, TypeExpenses
 from factory.models import BankStatementsData, Mcc
 from django.core.exceptions import ObjectDoesNotExist
@@ -10,6 +12,8 @@ from decimal import *
 #TODO оптимизировать код, убрать повторяющиеся path
 
 # parse spreadsheets data
+
+
 def json_get(path='http://gsx2json.com/api?id=1BRDrKF9anTLPBBN5e3n_g2S0FTiiCFfPG5UuD2cnuPQ&sheet=4'):
     response = requests.get(path)
     data_spreadsheet = json.loads(response.text)
@@ -47,8 +51,8 @@ def append_country(func=json_get()):
         except ObjectDoesNotExist:
             pass
 
-# create BankStatements list in the model BankStatementsData
-def load_bank_statements_data(path='http://gsx2json.com/api?id=1BRDrKF9anTLPBBN5e3n_g2S0FTiiCFfPG5UuD2cnuPQ&sheet=2'):
+# create BankStatements list in the model BankStatementsData https://docs.google.com/spreadsheets/d/e/2PACX-1vQmfEyjQbh1TMyF7wftZWOyEW42iTSyAbnaif0dgAgX-P6xxt7QKpnbdT-eHOlyR9WFh16Gy4PYNweG/pubhtml?gid=885799634&single=true
+def load_bank_statements_data(path='http://gsx2json.com/api?id=1t3iHjR_pPDyV3PL4MyIxX287NqsyiiaBMWogQ9JEh00&sheet=2'):
     response = requests.get(path)
     data_spreadsheet = json.loads(response.text)
     data_db = data_spreadsheet['rows']
@@ -62,10 +66,12 @@ def load_bank_statements_data(path='http://gsx2json.com/api?id=1BRDrKF9anTLPBBN5
 
     d = []
     for i in data_db:
+
         d.append(dict(
             purpose=i["призначення"],
             amount=numbers(i["сума"]),
-            date_operation=datetime.strptime(i["датаоперації"], "%d.%m.%Y")
+            date_operation=datetime.strptime(i["датаоперації"], "%d.%m.%Y"),
+            user_id=User.objects.get(id=i['user']).id
         ))
 
     BankStatementsData.objects.bulk_create([BankStatementsData(**r) for r in d])
