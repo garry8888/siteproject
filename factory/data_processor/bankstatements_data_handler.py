@@ -1,6 +1,9 @@
+from django.contrib.auth.models import User
+
 from factory.models import BankStatementsData, Mcc
 from finance.models import Countries, MoneyTransaction, BankStatements
 from django.core.exceptions import ObjectDoesNotExist
+
 
 
 def create_bank_statements():
@@ -45,9 +48,11 @@ def create_bank_statements():
     for row in data:
         purpose = row.purpose
         amount = row.amount
+
         if purpose.startswith('Покупка'):
             transaction = purpose.split(',')  # ['Покупка (EPICENTR KAFE(P0019265)', ' Kyiv', ' UKR', 'MCC 5812)']
             mcc = get_mcc(transaction[3])
+            print(mcc, transaction)
             mcc_d.append(dict(
                 transaction_place=transaction[0],
                 type_expenses_id=Mcc.objects.get(mcc=mcc).type_expenses_id,
@@ -55,17 +60,19 @@ def create_bank_statements():
                 sum_transaction=amount,
                 currency_id=currency(transaction[2].lstrip()),
                 country_id=country(transaction[2].lstrip()),
-                date_of_trans=row.date_operation
+                date_of_trans=row.date_operation,
+                user_id=User.objects.get(id=row.user_id).id
             ))
         if not purpose.startswith('Покупка'):
             mcc_d.append(dict(
-                transaction_place='Другое',
+                transaction_place=purpose,
                 type_expenses_id=12,
                 type_transaction_id=MoneyTransaction.objects.get(type_transaction_en=amount_transaction(amount)).id,
                 sum_transaction=amount,
                 currency_id=None,
                 country_id=None,
-                date_of_trans=row.date_operation
+                date_of_trans=row.date_operation,
+                user_id=User.objects.get(id=1).id
             ))
 
     BankStatements.objects.bulk_create([BankStatements(**r) for r in mcc_d])
