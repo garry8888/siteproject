@@ -1,3 +1,16 @@
 {% extends  'factory_base.html' %}
-{% block main %}
+{% block content %}
+        <title>Update</title>
+        <div>
+            <h1><strong>Загрузка банковской выписки</strong></h1>
+        </div>
+            <form method="POST" class="post-form">{% csrf_token %}
+                {{ form_url }}
+                <button type="submit" class="save btn btn-default">Ok</button>
+            </form>
+        <div>
+            <p>{{ confirmation }}</p>
+            <p>{{ confirm }}</p>
+            <p>{{ user.id }}</p>
+        </div>
 {% endblock %}

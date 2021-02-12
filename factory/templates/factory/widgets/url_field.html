@@ -1,0 +1,7 @@
+{% block content %}
+    <div style="text-align: left; margin-top: 100px">
+        <form method="POST" class="post-form">{% csrf_token %}
+            {{ urlinput.url_field }}
+        </form>
+    </div>
+{% endblock %}

@@ -5,9 +5,16 @@ from finance.models import Countries, MoneyTransaction, BankStatements
 from django.core.exceptions import ObjectDoesNotExist
 
 
+def check_last_update(user):  #проверка последней даты обновленной выписки
+    last_transaction = BankStatements.objects.order_by('-date_of_trans')[0]
+    exclude_duplicates = BankStatementsData.objects.filter(date_operation__gt=last_transaction.date_of_trans,
+                                                           user=user)
 
-def create_bank_statements():
-    data = BankStatementsData.objects.all()
+    return exclude_duplicates
+
+
+def create_bank_statements(user_id):
+    data = check_last_update(user_id)
     mcc_d = []
 
     def amount_transaction(transaction_sum):
@@ -52,7 +59,7 @@ def create_bank_statements():
         if purpose.startswith('Покупка'):
             transaction = purpose.split(',')  # ['Покупка (EPICENTR KAFE(P0019265)', ' Kyiv', ' UKR', 'MCC 5812)']
             mcc = get_mcc(transaction[3])
-            print(mcc, transaction)
+
             mcc_d.append(dict(
                 transaction_place=transaction[0],
                 type_expenses_id=Mcc.objects.get(mcc=mcc).type_expenses_id,
@@ -61,7 +68,7 @@ def create_bank_statements():
                 currency_id=currency(transaction[2].lstrip()),
                 country_id=country(transaction[2].lstrip()),
                 date_of_trans=row.date_operation,
-                user_id=User.objects.get(id=row.user_id).id
+                user_id=user_id
             ))
         if not purpose.startswith('Покупка'):
             mcc_d.append(dict(
@@ -72,7 +79,7 @@ def create_bank_statements():
                 currency_id=None,
                 country_id=None,
                 date_of_trans=row.date_operation,
-                user_id=User.objects.get(id=1).id
+                user_id=user_id
             ))
-
+            
     BankStatements.objects.bulk_create([BankStatements(**r) for r in mcc_d])
