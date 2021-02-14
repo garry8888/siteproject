@@ -8,7 +8,7 @@ from users.core.get_user import user_from_session_key
 
 
 @login_required(login_url='/users/login/')
-def update_bank_statements_data(request): #обновление данных по банковской выписке BankStatementsData
+def update_bank_statements_data(request):   #обновление данных по банковской выписке BankStatementsData
     session_k = request.session.session_key
     user = user_from_session_key(session_k)
 
@@ -24,9 +24,11 @@ def update_bank_statements_data(request): #обновление данных п�
                 confirmation = 'Информация не загружена. Документ опубликован в интернете?'
             else:
                 confirmation = 'Информация загружена.'
+
                 try:
                     update_bankstatements = create_bank_statements(user_id=user.id)
                     confirm = 'Выписка обновлена'
+
                 except Exception:
                     confirm = 'Ошибка. Выписка не обновлена'
 
@@ -35,4 +37,5 @@ def update_bank_statements_data(request): #обновление данных п�
 
     else:
         form_url = UrlInput(request.POST)
+
     return render(request, 'factory/google_api_spreadsheet/update_bankstatements.html', {'form_url': form_url})

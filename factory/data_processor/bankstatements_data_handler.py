@@ -6,9 +6,13 @@ from django.core.exceptions import ObjectDoesNotExist
 
 
 def check_last_update(user):  #проверка последней даты обновленной выписки
-    last_transaction = BankStatements.objects.order_by('-date_of_trans')[0]
-    exclude_duplicates = BankStatementsData.objects.filter(date_operation__gt=last_transaction.date_of_trans,
-                                                           user=user)
+    try:
+        last_transaction = BankStatements.objects.filter(user=user).order_by('-date_of_trans')[0]
+        exclude_duplicates = BankStatementsData.objects.filter(date_operation__gt=last_transaction.date_of_trans,
+                                                               user=user)
+    except IndexError:
+        exclude_duplicates = BankStatementsData.objects.filter(user=user)
+    print(exclude_duplicates)
 
     return exclude_duplicates
 
@@ -55,10 +59,12 @@ def create_bank_statements(user_id):
     for row in data:
         purpose = row.purpose
         amount = row.amount
+        print(row.id, row.purpose)
 
-        if purpose.startswith('Покупка'):
-            transaction = purpose.split(',')  # ['Покупка (EPICENTR KAFE(P0019265)', ' Kyiv', ' UKR', 'MCC 5812)']
+        if purpose.startswith('Покупка') or purpose.startswith('Зняття') or purpose.startswith('Списание'):
+            transaction = purpose.split(',')    #['Покупка (EPICENTR KAFE(P0019265)', ' Kyiv', ' UKR', 'MCC 5812)']
             mcc = get_mcc(transaction[3])
+            print(mcc)
 
             mcc_d.append(dict(
                 transaction_place=transaction[0],
@@ -70,7 +76,8 @@ def create_bank_statements(user_id):
                 date_of_trans=row.date_operation,
                 user_id=user_id
             ))
-        if not purpose.startswith('Покупка'):
+
+        else:
             mcc_d.append(dict(
                 transaction_place=purpose,
                 type_expenses_id=12,
@@ -81,5 +88,5 @@ def create_bank_statements(user_id):
                 date_of_trans=row.date_operation,
                 user_id=user_id
             ))
-            
+
     BankStatements.objects.bulk_create([BankStatements(**r) for r in mcc_d])

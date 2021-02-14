@@ -21,11 +21,13 @@ def load_bank_statements_data(url, sheet_numb, user_id):
         data_spreadsheet = json.loads(response.text)
         data_db = data_spreadsheet['rows']
 
-        def numbers(data):              #TODO не убирает пробелы из числа: 1 000 000
+        def numbers(data):
             if type(data) == int:
                 nums = Decimal(data)
             if type(data) == str:
-                nums = Decimal(data.replace(',', '.'))
+                nums_d = data.replace(' ', '')    #убирает пробелы из числа: 1 000 000
+                nums = Decimal(nums_d.replace(',', '.'))
+
             return nums
 
         d = []
@@ -38,7 +40,6 @@ def load_bank_statements_data(url, sheet_numb, user_id):
                 user_id=user_id #User.objects.get(id=i['user']).id
             ))
 
-        return print(d)
-        #BankStatementsData.objects.bulk_create([BankStatementsData(**r) for r in d])
+        BankStatementsData.objects.bulk_create([BankStatementsData(**r) for r in d])
     except JSONDecodeError:
         return 0
