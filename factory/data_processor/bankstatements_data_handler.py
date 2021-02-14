@@ -74,7 +74,8 @@ def create_bank_statements(user_id):
                 currency_id=currency(transaction[2].lstrip()),
                 country_id=country(transaction[2].lstrip()),
                 date_of_trans=row.date_operation,
-                user_id=user_id
+                user_id=user_id,
+                original_id=row.id
             ))
 
         else:
@@ -86,7 +87,8 @@ def create_bank_statements(user_id):
                 currency_id=None,
                 country_id=None,
                 date_of_trans=row.date_operation,
-                user_id=user_id
+                user_id=user_id,
+                original_id=row.id
             ))
 
     BankStatements.objects.bulk_create([BankStatements(**r) for r in mcc_d])

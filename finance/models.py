@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
 
+from factory.models import BankStatementsData
+
 
 class Currency(models.Model):
     name = models.CharField(max_length=100)
@@ -46,5 +48,6 @@ class BankStatements(models.Model):
     date_of_trans = models.DateField(null=True)
     date_created = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    original = models.ForeignKey(BankStatementsData, on_delete=models.CASCADE, null=True)
 
 
