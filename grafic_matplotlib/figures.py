@@ -15,8 +15,8 @@ def test_figure():
 
 
 #статический пирог в админке джанго
-def pie_figure(s_day='2020-10-01', e_day='2020-10-20'):
-    data = sum_expenses(start=s_day, end=e_day)
+def pie_figure(us=[1, 2], s_day='2020-10-01', e_day='2020-10-20'):
+    data = sum_expenses(users=us, start=s_day, end=e_day)
     labels = []
     sizes = []
 
@@ -66,10 +66,10 @@ def get_pie():
     return graph
 
 
-def get_plot(s_day, e_day):
+def get_plot(users, s_day, e_day):
     plt.switch_backend('AGG')
 
-    data = sum_expenses(start=s_day, end=e_day)
+    data = sum_expenses(users=users, start=s_day, end=e_day)
     labels = []
     sizes = []
 

@@ -2,14 +2,14 @@ from django.db.models import Sum
 from finance.models import BankStatements, TypeExpenses
 
 
-def sum_expenses(start, end):
+def sum_expenses(users, start, end):
     expenses = TypeExpenses.objects.all()
     t_expenses = []
     total_expenses = BankStatements.objects.filter(type_transaction_id=1, date_of_trans__range=[start, end]).\
         aggregate(sum_t=Sum('sum_transaction'))
 
     for exp in expenses:
-        all_expenses = BankStatements.objects.filter(type_expenses=exp.id, type_transaction_id=1,
+        all_expenses = BankStatements.objects.filter(user_id__in=users, type_expenses=exp.id, type_transaction_id=1,
                                                      date_of_trans__range=[start, end]).\
             aggregate(sum_t=Sum('sum_transaction'))
 
@@ -22,12 +22,12 @@ def sum_expenses(start, end):
     return t_expenses
 
 
-def amount_expenses(start, end):
+def amount_expenses(users, start, end):
     expenses = TypeExpenses.objects.all()
     t_expenses = []
 
     for exp in expenses:
-        all_expenses = BankStatements.objects.filter(type_expenses=exp.id, type_transaction_id=1,
+        all_expenses = BankStatements.objects.filter(user_id__in=users, type_expenses=exp.id, type_transaction_id=1,
                                                      date_of_trans__range=[start, end]).\
             aggregate(sum_t=Sum('sum_transaction'))
 

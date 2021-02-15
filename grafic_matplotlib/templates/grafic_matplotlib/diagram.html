@@ -4,9 +4,9 @@
             <h1><strong>График расходов будет тут</strong></h1>
         </div>
             <form method="POST" class="post-form">{% csrf_token %}
-                {{ form }}
+                {{ form_cal }}
+                {{ form_user }}
                 <button type="submit" class="save btn btn-default">Ok</button>
-                {{ debug }}
             </form>
         <div>
             <fieldset class="module aligned ">

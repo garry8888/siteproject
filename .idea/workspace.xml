@@ -2,7 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c0742b42-20c1-4485-9c48-940a47559169" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/finance/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/finance/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/analytics/query_data.py" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/analytics/query_data.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/core/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/core/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/figures.py" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/figures.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/diagram.html" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/diagram.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/pie.html" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/pie.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gsite/templates/gsite/wrapper.html" beforeDir="false" afterPath="$PROJECT_DIR$/gsite/templates/gsite/wrapper.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,12 +189,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/grafic_matplotlib/views.py</url>
-          <line>31</line>
+          <line>33</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/grafic_matplotlib/views.py</url>
-          <line>39</line>
+          <line>41</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

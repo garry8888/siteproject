@@ -1,6 +1,8 @@
 from django import forms
+from django.contrib.auth.models import User
 
 
+#Календарь
 class DateInput(forms.DateInput):
     input_type = 'date'
 
@@ -14,3 +16,18 @@ class CalendarModelForms(forms.Form):
 
     class Meta:
         widgets = {'date_field_start': DateInput()}
+
+
+#выбор пользователя для отображения данных
+class UserInput(forms.CheckboxSelectMultiple):
+    input_type = 'checkbox'
+    #template_name = 'django/forms/widgets/checkbox_select.html'
+    #option_template_name = 'django/forms/widgets/checkbox_option.html'
+
+
+class UserChoice(forms.Form):
+    user_field = forms.ModelMultipleChoiceField(label='Пользователи', queryset=User.objects.all(), widget=UserInput)
+
+    class Meta:
+        widgets = {'user_field': UserInput()}
+
