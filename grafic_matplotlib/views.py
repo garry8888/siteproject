@@ -1,11 +1,12 @@
+import calendar
 from datetime import datetime, date
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
 from grafic_matplotlib.core.forms import Calendar, UserChoice
 from grafic_matplotlib.models import Pie, Diagram
-from grafic_matplotlib.figures import pie_figure, get_plot
-from grafic_matplotlib.analytics.query_data import amount_expenses, sum_expenses
+from grafic_matplotlib.figures import pie_figure, get_plot, get_bar_chart
+from grafic_matplotlib.analytics.query_data import amount_expenses, sum_expenses, expenses_per_month
 
 
 def sum_transactions(u, s, e):
@@ -35,6 +36,18 @@ def expenses_per_category(u, s, e):
         amnt_expenses.append({amount['type_expenses_ru']: amount['total_amount']})
 
     return amnt_expenses
+
+
+def month_expenses(u):
+    if u is None:
+        u = [1, 2]
+    list_month_expenses = expenses_per_month(users=u)
+    mnth_expenses = []
+
+    for amount in list_month_expenses:
+        mnth_expenses.append({calendar.month_abbr[int(amount['month'])]: amount['total_amount']})
+
+    return mnth_expenses
 
 
 @login_required(login_url='/users/login/')
@@ -73,30 +86,33 @@ def index_p(request):
 
 
 @login_required(login_url='/users/login/')
-def index_d(request):
-    diagram = Diagram.figure.source
+def index_d(request):   #TODO сделать возможность ввести год
+    bar_char = get_bar_chart(users=[1, 2])
 
     if request.method == 'POST':
-        form_cal = Calendar(request.POST)
+        #form_cal = Calendar(request.POST)
         form_user = UserChoice(request.POST)
 
-        if form_cal.is_valid() and form_user.is_valid():
-            s = form_cal.cleaned_data['date_field_start']
-            e = form_cal.cleaned_data['date_field_end']
+        if form_user.is_valid():
+            #s = form_cal.cleaned_data['date_field_start']
+            #e = form_cal.cleaned_data['date_field_end']
             choice_user = [i.id for i in form_user.cleaned_data['user_field']]
-            data_update = expenses_per_category(u=choice_user, s=s, e=e)
-            return render(request, 'grafic_matplotlib/pie.html', {'sum_expenses': sum_transactions(u=choice_user, s=s, e=e),
-                                                                  'amount_expenses': data_update,
-                                                                  'form_cal': form_cal, 'form_user': form_user})
+            print('----------------', choice_user)
+            data_update = month_expenses(choice_user)
+            bar_char = get_bar_chart(users=choice_user)
+            return render(request, 'grafic_matplotlib/diagram.html', {'bar_char': bar_char,
+                                                                  #'sum_expenses': sum_transactions(u=choice_user, s=s, e=e),
+                                                                  'amount_expenses': data_update, 'form_user': form_user})
+                                                                  #'form_cal': form_cal
 
     else:
-        form_cal = Calendar()
+        #form_cal = Calendar()
         form_user = UserChoice()
 
-    return render(request, 'grafic_matplotlib/diagram.html', {'diagram_fig': diagram,
-                                                              'sum_expenses': sum_transactions(u=None, s=None, e=None),
-                                                              'amount_expenses': expenses_per_category(u=None, s=None, e=None),
-                                                              'form_cal': form_cal, 'form_user': form_user})
+    return render(request, 'grafic_matplotlib/diagram.html', {'bar_char': bar_char,
+                                                              #'sum_expenses': sum_transactions(u=None, s=None, e=None),
+                                                              'amount_expenses': month_expenses(u=None),
+                                                              'form_user': form_user})#, 'form_cal': form_cal,})
 
 
 @login_required(login_url='/users/login/')

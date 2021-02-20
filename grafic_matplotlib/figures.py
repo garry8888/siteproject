@@ -5,7 +5,8 @@ import base64
 from io import BytesIO
 from matplotlib.lines import Line2D
 
-from grafic_matplotlib.analytics.query_data import sum_expenses
+from grafic_matplotlib.analytics.query_data import sum_expenses, expenses_per_month
+
 
 #тест
 def test_figure():
@@ -81,7 +82,30 @@ def get_plot(users, s_day, e_day):
     ax1.pie(sizes, labels=labels, autopct='%1.1f%%',
             shadow=False, startangle=120)
     ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+    fig1.set_facecolor('floralwhite')  # color of the background
     graph = get_pie()
 
     return graph
 
+
+#интерактивный вывод столбчатой диаграммы
+def get_bar_chart(users):
+    plt.switch_backend('AGG')
+    data = expenses_per_month(users)
+    x = []
+    y = []
+    #x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    #y = [1000, 2000, 3000, 4000, 5000, 3000, 2000, 1500, 1000, 5000, 6000, 15]
+
+    for i in data:
+        x.append(int(i['month']))
+        y.append(int(-i['total_amount']))
+
+    fig, ax = plt.subplots()
+
+    ax.bar(x, y)
+    ax.set_facecolor('seashell')
+    fig.set_facecolor('floralwhite')  # color of the background
+    bar_chart = get_pie()
+
+    return bar_chart

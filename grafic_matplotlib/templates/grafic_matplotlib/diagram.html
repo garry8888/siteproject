@@ -1,24 +1,24 @@
 {% extends "gsite/wrapper.html" %}
 {% block content %}
+        <title>Bar Chart</title>
         <div>
-            <h1><strong>График расходов будет тут</strong></h1>
+            <h1><strong>Гистограмма расходов</strong></h1>
         </div>
             <form method="POST" class="post-form">{% csrf_token %}
-                {{ form_cal }}
-                {{ form_user }}
-                <button type="submit" class="save btn btn-default">Ok</button>
+                {{ form_user }} <button type="submit" class="save btn btn-default">Ok</button>
             </form>
         <div>
-            <fieldset class="module aligned ">
+            <fieldset class="module aligned ", style="width:100%">
                 <div class="form-row field-figure">
                     <div>
-                        <label for="id_figure"></label>
-                        <img src="data:image/png;base64, {{diagram_fig}}" width="800px" height="560px" class="img-thumbnail">
+                        <label for="id_figure">
+                            <img src="data:image/png;base64, {{bar_char|safe}}" width="800px" height="560px" class="img-thumbnail">
+                        </label>
                     </div>
                 </div>
             </fieldset>
             <div>
-                {% include "grafic_matplotlib/includes/table.html" %}
+                {% include "grafic_matplotlib/includes/table_month.html" %}
             </div>
         </div>
 {% endblock %}
