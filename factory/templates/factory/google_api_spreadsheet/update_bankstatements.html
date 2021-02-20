@@ -1,16 +1,25 @@
 {% extends  'factory_base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
-        <title>Update</title>
-        <div>
+        <head>
+            <title>Update</title>
+        </head>
+        <div class="text-center">
             <h1><strong>Загрузка банковской выписки</strong></h1>
         </div>
-            <form method="POST" class="post-form">{% csrf_token %}
-                {{ form_url }}
-                <button type="submit" class="save btn btn-default">Ok</button>
-            </form>
-        <div>
-            <p>{{ confirmation }}</p>
-            <p>{{ confirm }}</p>
-            <p>{{ user.id }}</p>
+        <div class="card" style="text-align: centre; margin: 0 auto ; width: 20%">
+            <link  rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"  crossorigin="anonymous">
+            <div class="card-body"></div>
+                <form method="POST" class="post-form">
+                    {% csrf_token %}
+                    {{ form_url|crispy }}
+                    <button type="submit" class="btn btn-primary btn-block" style="text-align: centre; margin: 0 auto ; width: 20%; height: 80%">Ok</button>
+                </form>
+            </div>
+            <div>
+                <p>{{ confirmation }}</p>
+                <p>{{ confirm }}</p>
+                <p>{{ user.id }}</p>
+            </div>
         </div>
 {% endblock %}
