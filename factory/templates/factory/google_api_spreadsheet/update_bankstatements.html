@@ -9,7 +9,7 @@
         </div>
         <div class="card" style="text-align: centre; margin: 0 auto ; width: 20%">
             <link  rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"  crossorigin="anonymous">
-            <div class="card-body"></div>
+            <div class="card-body">
                 <form method="POST" class="post-form">
                     {% csrf_token %}
                     {{ form_url|crispy }}

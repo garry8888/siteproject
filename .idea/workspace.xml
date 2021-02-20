@@ -3,12 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="c0742b42-20c1-4485-9c48-940a47559169" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/factory/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/factory/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/factory/templates/factory/factory_base.html" beforeDir="false" afterPath="$PROJECT_DIR$/factory/templates/factory/factory_base.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/factory/templates/factory/google_api_spreadsheet/update_bankstatements.html" beforeDir="false" afterPath="$PROJECT_DIR$/factory/templates/factory/google_api_spreadsheet/update_bankstatements.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/factory/templates/factory/widgets/url_field.html" beforeDir="false" afterPath="$PROJECT_DIR$/factory/templates/factory/widgets/url_field.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/static/css/table.css" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/static/css/table.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/diagram.html" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/diagram.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/includes/table.html" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/includes/table.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/includes/table_month.html" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/includes/table_month.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/pie.html" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/pie.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

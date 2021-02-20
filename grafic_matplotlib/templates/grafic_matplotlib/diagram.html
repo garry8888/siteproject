@@ -1,13 +1,15 @@
 {% extends "gsite/wrapper.html" %}
 {% block content %}
         <title>Bar Chart</title>
-        <div>
+        <div class="text-center">
             <h1><strong>Гистограмма расходов</strong></h1>
         </div>
-            <form method="POST" class="post-form">{% csrf_token %}
-                {{ form_user }} <button type="submit" class="save btn btn-default">Ok</button>
+            <form method="POST" class="post-form">
+                {% csrf_token %}
+                {{ form_user }}
+                <button type="submit" class="save btn btn-default">Ok</button>
             </form>
-        <div>
+        <div class="inline-block" style="float: left; width: 50%; padding: 0px">
             <fieldset class="module aligned " style="width:100%">
                 <div class="form-row field-figure">
                     <div>
@@ -17,8 +19,8 @@
                     </div>
                 </div>
             </fieldset>
-            <div>
-                {% include "grafic_matplotlib/includes/table_month.html" %}
             </div>
+        <div class="inline-block" style="float: right; width: 50%; padding: 0px">
+            {% include "grafic_matplotlib/includes/table_month.html" %}
         </div>
 {% endblock %}
