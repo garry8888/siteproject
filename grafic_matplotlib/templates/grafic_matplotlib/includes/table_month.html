@@ -1,19 +1,7 @@
 {% block content %}
                 <table id="t01">
-                    <style>
-                        table {
-                            font-family: arial, sans-serif;
-                            margin: 0 auto;
-                            width:100%;
-                        }
-                        table, th, td {
-                            border: 3px solid #dddddd;
-                            border-collapse: collapse;
-                        }
-                        th, td {
-                            padding: 9px;
-                        }
-                    </style>
+                    {% load static %}
+                    <link rel="stylesheet" type="text/css" href="{% static 'grafic_matplotlib/table.css' %}">
                     <tr>
                         <th>Месяц</th>
                         <th>Сумма расходов, грн.</th>

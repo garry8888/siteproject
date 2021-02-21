@@ -5,13 +5,19 @@
         <div class="text-center">
             <h1><strong>Доля расходов %</strong></h1>
         </div>
-            <form method="POST" class="form-inline">
-                {% csrf_token %}
-                {{ form_cal }}
-                {{ form_user|crispy }}
-                <button type="submit" class="btn btn-primary btn-block" style="text-align: centre; width: 5%">Ok</button>
+        <div class="tool-bar">
+            <form method="POST" class="form-inline" style="border: 3px solid #b0c4de">
+                {% load static %}
+                <link rel="stylesheet" type="text/css" href="{% static 'grafic_matplotlib/button.css' %}">
+                <button type="submit" class="btn btn-primary btn-inline" style="width: 5%">Ok</button>
+                <div class="inline-block">
+                    {% csrf_token %}
+                    {{ form_cal }}
+                    {{ form_user|crispy }}
+                </div>
             </form>
-        <div class="inline-block" style="float: left; width: 50%; padding: 0px">
+        </div>
+        <div class="inline-block" style="float: left; width: 50%; border: 3px solid #b0c4de; padding: 0px">
             <fieldset class="module aligned " style="width: 100%">
                 <div class="form-row field-figure">
                     <div>
@@ -22,7 +28,7 @@
                 </div>
             </fieldset>
         </div>
-        <div class="inline-block" style="float: right; width: 50%; padding: 0px">
+        <div class="inline-block" style="float: right; width: 50%; border: 3px solid #b0c4de; padding: 0px">
             {% include "grafic_matplotlib/includes/table.html" %}
         </div>
 {% endblock %}
