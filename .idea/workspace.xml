@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c0742b42-20c1-4485-9c48-940a47559169" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/core/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/core/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/static/grafic_matplotlib/button.css" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/static/grafic_matplotlib/button.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/diagram.html" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/diagram.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/pie.html" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/pie.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/figures.py" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/figures.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

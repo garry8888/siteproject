@@ -31,7 +31,7 @@ def pie_figure(us=[1, 2], s_day='2020-10-01', e_day='2020-10-20'):
     ax1.pie(sizes, labels=labels, autopct='%1.1f%%',
             shadow=False, startangle=120)
     ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-    fig1.set_facecolor('floralwhite')
+    fig1.set_facecolor('#afeeee')
 
     return fig1
 
@@ -83,7 +83,7 @@ def get_plot(users, s_day, e_day):
     ax1.pie(sizes, labels=labels, autopct='%1.1f%%',
             shadow=False, startangle=120)
     ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-    fig1.set_facecolor('floralwhite')  # color of the background
+    fig1.set_facecolor('#afeeee')  # color of the background
     graph = get_pie()
 
     return graph
@@ -106,7 +106,7 @@ def get_bar_chart(users, year):
 
     ax.bar(x, y)
     ax.set_facecolor('seashell')
-    fig.set_facecolor('floralwhite')  # color of the background
+    fig.set_facecolor('#afeeee')  # color of the background
     bar_chart = get_pie()
 
     return bar_chart
