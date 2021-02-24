@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 
 
 #Календарь
+from finance.models import BankStatements
+
+
 class DateInput(forms.DateInput):
     input_type = 'date'
 
@@ -31,3 +34,17 @@ class UserChoice(forms.Form):
     class Meta:
         widgets = {'user_field': UserInput()}
 
+
+#выбор года для гистограммы
+class YearInput(forms.Select):
+    input_type = 'select'
+
+
+class ChoiceYear(forms.Form):
+    years = [('2020', '2020'), ('2021', '2021')]
+    year_field = forms.ChoiceField(
+        label='Год',
+        required=False,
+        widget=YearInput,
+        choices=years,
+    )

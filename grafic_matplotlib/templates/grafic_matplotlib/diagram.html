@@ -9,9 +9,10 @@
                 <form method="POST" class="form-inline" style="border: 3px solid #b0c4de">
                     {% load static %}
                     <link rel="stylesheet" type="text/css" href="{% static 'grafic_matplotlib/button.css' %}">
-                    <button type="submit" class="btn btn-primary btn-block" style="margin-right: 85%; width: 5%">Ok</button>
+                    <button type="submit" class="btn btn-primary btn-block" style="width: 5%">Ok</button>
                     <div class="inline-block">
                         {% csrf_token %}
+                        {{ form_year }}
                         {{ form_user|crispy }}
                     </div>
                 </form>

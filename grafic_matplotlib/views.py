@@ -2,7 +2,7 @@ import calendar
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
-from grafic_matplotlib.core.forms import Calendar, UserChoice
+from grafic_matplotlib.core.forms import Calendar, UserChoice, ChoiceYear
 from grafic_matplotlib.models import Pie
 from grafic_matplotlib.figures import get_plot, get_bar_chart
 from grafic_matplotlib.analytics.query_data import amount_expenses, expenses_per_month
@@ -37,10 +37,11 @@ def expenses_per_category(u, s, e):
     return amnt_expenses
 
 
-def month_expenses(u):
+def month_expenses(u, y):
     if u is None:
         u = [1, 2]
-    list_month_expenses = expenses_per_month(users=u)
+        y = '2020'
+    list_month_expenses = expenses_per_month(users=u, year=y)
     mnth_expenses = []
 
     for amount in list_month_expenses:
@@ -66,7 +67,6 @@ def index_p(request):
             s = form_cal.cleaned_data['date_field_start']
             e = form_cal.cleaned_data['date_field_end']
             choice_user = [i.id for i in form_user.cleaned_data['user_field']]
-            print(choice_user)
             data_update = expenses_per_category(choice_user, s, e)
             pie_update = get_plot(choice_user, s, e)
             return render(request, 'grafic_matplotlib/pie.html', {'pie_fig': pie_update,
@@ -85,25 +85,28 @@ def index_p(request):
 
 @login_required(login_url='/users/login/')
 def index_d(request):   #TODO сделать возможность ввести год
-    bar_char = get_bar_chart(users=[1, 2])
+    bar_char = get_bar_chart(users=[1, 2], year='2020')
 
     if request.method == 'POST':
+        form_year = ChoiceYear(request.POST)
         form_user = UserChoice(request.POST)
 
-        if form_user.is_valid():
+        if form_year.is_valid() and form_user.is_valid():
+            choice_year = form_year.cleaned_data['year_field']
             choice_user = [i.id for i in form_user.cleaned_data['user_field']]
-            data_update = month_expenses(choice_user)
-            bar_char = get_bar_chart(users=choice_user)
+            data_update = month_expenses(choice_user, choice_year)
+            bar_char = get_bar_chart(choice_user, choice_year)
             return render(request, 'grafic_matplotlib/diagram.html', {'bar_char': bar_char,
                                                                   'amount_expenses': data_update,
-                                                                      'form_user': form_user})
+                                                                      'form_year': form_year, 'form_user': form_user})
 
     else:
+        form_year = ChoiceYear()
         form_user = UserChoice()
 
     return render(request, 'grafic_matplotlib/diagram.html', {'bar_char': bar_char,
-                                                              'amount_expenses': month_expenses(u=None),
-                                                              'form_user': form_user})
+                                                              'amount_expenses': month_expenses(u=None, y=None),
+                                                              'form_year': form_year, 'form_user': form_user})
 
 
 @login_required(login_url='/users/login/')

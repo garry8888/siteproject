@@ -89,9 +89,9 @@ def get_plot(users, s_day, e_day):
 
 
 #интерактивный вывод столбчатой диаграммы
-def get_bar_chart(users):
+def get_bar_chart(users, year):
     plt.switch_backend('AGG')
-    data = expenses_per_month(users)
+    data = expenses_per_month(users, year)
     x = []
     y = []
     #x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
