@@ -1,11 +1,11 @@
-button {
+.button {
     display: inline-block;
     text-align: centre;
     height: 35px;
     width: 40px;
     float: right;
     margin-right: 65%;
-    margin-top: 2%;
+    margin-top: 0.7%;
     background: url(/transition.png) 0 0 no-repeat;
     transition: background 0.2s ease;
 }

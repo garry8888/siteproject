@@ -31,6 +31,7 @@ def pie_figure(us=[1, 2], s_day='2020-10-01', e_day='2020-10-20'):
     ax1.pie(sizes, labels=labels, autopct='%1.1f%%',
             shadow=False, startangle=120)
     ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+    fig1.set_facecolor('floralwhite')
 
     return fig1
 

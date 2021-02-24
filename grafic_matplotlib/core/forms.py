@@ -1,3 +1,5 @@
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Row, Column
 from django import forms
 from django.contrib.auth.models import User
 
@@ -11,8 +13,8 @@ class DateInput(forms.DateInput):
 
 
 class Calendar(forms.Form):
-    date_field_start = forms.DateField(label='С', widget=DateInput)
-    date_field_end = forms.DateField(label='по', widget=DateInput)
+    date_field_start = forms.DateField(label='', widget=DateInput)
+    date_field_end = forms.DateField(label='', widget=DateInput)
 
 
 class CalendarModelForms(forms.Form):
@@ -29,7 +31,7 @@ class UserInput(forms.CheckboxSelectMultiple):
 
 
 class UserChoice(forms.Form):
-    user_field = forms.ModelMultipleChoiceField(label='Пользователи', queryset=User.objects.all(), widget=UserInput)
+    user_field = forms.ModelMultipleChoiceField(label='', queryset=User.objects.all(), widget=UserInput)
 
     class Meta:
         widgets = {'user_field': UserInput()}
@@ -43,7 +45,7 @@ class YearInput(forms.Select):
 class ChoiceYear(forms.Form):
     years = [('2020', '2020'), ('2021', '2021')]
     year_field = forms.ChoiceField(
-        label='Год',
+        label='',
         required=False,
         widget=YearInput,
         choices=years,
