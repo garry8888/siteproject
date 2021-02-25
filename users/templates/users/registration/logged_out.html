@@ -1,7 +1,10 @@
 {% extends 'users_base.html' %}
 {% block main %}
 
-<p>You are logged out!</p>
-<a  href="{% url 'login' %}">Log in again</a>
-
+<div  class="card" style="margin-top: 10%; border: 3px solid #b0c4de; border-collapse: collapse">
+<div  class="card-body">
+<h4  class="card-title">You are logged out!</h4>
+<a  href="{% url 'login' %}" class="btn btn-primary btn-block" style="height: 35px; width: 300px">Log in again</a>
+</div>
+</div>
 {% endblock %}

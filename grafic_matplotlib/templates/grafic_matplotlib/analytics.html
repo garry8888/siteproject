@@ -1,26 +1,27 @@
 {% extends "gsite/wrapper.html" %}
 {% block content %}
+        <title>Analytics</title>
         <div>
             <h1>Analytics family expenses</h1>
         </div>
+        <div class="container" style="float: left; width: 30%; border: 3px solid #b0c4de; padding: 0px">
+            <div class="row1">
+                <h3><a href="pie/">Percent expenses pie</a> </h3>
+                <p>Круговая диаграмма затрат в разрезе категорий</p>
+            </div>
 
-        <div class="row1">
-            <h3><a href="pie/">Percent expenses pie</a> </h3>
-            <p>Круговая диаграмма затрат в разрезе категорий</p>
-        </div>
+            <div>
+                <h3><a href="diagram/">Bar Chart</a> </h3>
+                <p>Расходы помесячно</p>
+            </div>
 
-        <div>
-            <h3><a href="diagram/">Diagram</a> </h3>
-            <p>In development</p>
-        </div>
-
-        <div>
-            <h3><a href="planning/">Planning</a> </h3>
-            <p>In development</p>
-        </div>
-        <div>
-            <h3><a href="factory/">Update Data</a> </h3>
-            <p>Обнонвить банковскую выписку</p>
-            <p>In development</p>
+            <div>
+                <h3><a href="planning/">Planning</a> </h3>
+                <p>In development</p>
+            </div>
+            <div>
+                <h3><a href="factory/">Update Data</a> </h3>
+                <p>Загрузка банковской выписки</p>
+            </div>
         </div>
 {% endblock %}
