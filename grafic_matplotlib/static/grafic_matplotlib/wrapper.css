@@ -9,7 +9,8 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 45px;
+    padding: 0px 45px;
+    left: 0px;
     background: #202122;
     color: #ebeb0e;
     overflow: hidden;

@@ -6,8 +6,8 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="{% static 'grafic_matplotlib/wrapper.css' %}">
     </head>
-        <div id="header">
-            <div id="branding">
+        <div class="width width_padding" id="header">
+            <div class="width-inner" id="branding">
                 <h1 id="site-name">Home expense analytics</h1>
                 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
                 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
@@ -24,13 +24,13 @@
         <a href="/analytics/">Главная</a>
     </div>
 </div>
-    <body>
-        <style>
-            body {
-            background: #afeeee
-            }
-        </style>
-        {% block content %}
-        {% endblock %}
-    </body>
+<body>
+    <style>
+        body {
+        background: #afeeee
+        }
+    </style>
+    {% block content %}
+    {% endblock %}
+</body>
 </html>

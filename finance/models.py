@@ -7,7 +7,7 @@ from factory.models import BankStatementsData
 class Currency(models.Model):
     name = models.CharField(max_length=100)
     abbreviation = models.CharField(max_length=50)
-    #symbol = models.CharField(max_length=100, null=True)
+    # symbol = models.CharField(max_length=100, null=True)
     index = models.PositiveIntegerField(null=True)
 
 
@@ -31,11 +31,17 @@ class TypeExpenses(models.Model):
     type_expenses_ru = models.CharField(max_length=100, null=True)
     type_expenses_en = models.CharField(max_length=100)
 
+    def __str__(self):
+        return f'{self.id} - {self.type_expenses_ru}'
+
 
 class MoneyTransaction(models.Model):
     type_transaction_en = models.CharField(max_length=50)
     type_transaction_ru = models.CharField(max_length=50, null=True)
     type_transaction_ua = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f'{self.id} - {self.type_transaction_ru}'
 
 
 class BankStatements(models.Model):
@@ -49,5 +55,8 @@ class BankStatements(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     original = models.ForeignKey(BankStatementsData, on_delete=models.CASCADE, null=True)
+
+    def __str__(self):
+        return f'{self.id} - {self.transaction_place}'
 
 
