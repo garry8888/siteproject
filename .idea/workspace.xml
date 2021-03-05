@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="c0742b42-20c1-4485-9c48-940a47559169" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/factory/templates/factory/google_api_spreadsheet/update_bankstatements.html" beforeDir="false" afterPath="$PROJECT_DIR$/factory/templates/factory/google_api_spreadsheet/update_bankstatements.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/analytics.html" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/analytics.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/registration/logged_out.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/registration/logged_out.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/templates/users/registration/password_change_form.html" beforeDir="false" afterPath="$PROJECT_DIR$/users/templates/users/registration/password_change_form.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/static/grafic_matplotlib/wrapper.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gsite/templates/gsite/wrapper.html" beforeDir="false" afterPath="$PROJECT_DIR$/gsite/templates/gsite/wrapper.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,22 +39,22 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/gsite/templates/gsite" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/grafic_matplotlib/static/grafic_matplotlib" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Антон\Desktop\Project\siteproject\grafic_matplotlib\static\grafic_matplotlib" />
+      <recent name="C:\Users\Антон\Desktop\Project\siteproject\gsite\static\gsite" />
+      <recent name="C:\Users\Антон\Desktop\Project\siteproject\gsite\templates\gsite" />
+      <recent name="C:\Users\Антон\Desktop\Project\siteproject\gsite\templates\site" />
+      <recent name="C:\Users\Антон\Desktop\Project\siteproject\gsite\templates" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Антон\Desktop\Project\siteproject\grafic_matplotlib\static\grafic_matplotlib" />
       <recent name="C:\Users\Антон\Desktop\Project\siteproject\factory\templates\factory" />
       <recent name="C:\Users\Антон\Desktop\Project\siteproject\factory\templates" />
       <recent name="C:\Users\Антон\Desktop\Project\siteproject\grafic_matplotlib\templates\grafic_matplotlib\include" />
       <recent name="C:\Users\Антон\Desktop\Project\siteproject\grafic_matplotlib\static\html" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Антон\Desktop\Project\siteproject\gsite\templates\gsite" />
-      <recent name="C:\Users\Антон\Desktop\Project\siteproject\gsite\templates\site" />
-      <recent name="C:\Users\Антон\Desktop\Project\siteproject\gsite\templates" />
-      <recent name="C:\Users\Антон\Desktop\Project\siteproject\gsite\templates\admin" />
-      <recent name="C:\Users\Антон\Desktop\Project\siteproject\grafic_matplotlib\templates\figures" />
     </key>
   </component>
   <component name="RunManager" selected="Python.figures">
@@ -148,38 +146,18 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="188" y="154" key="FileChooserDialogImpl" timestamp="1605642802159">
+    <state x="294" y="100" width="1149" height="630" key="DiffContextDialog" timestamp="1614973951149">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="188" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1605642802159" />
-    <state width="1150" height="132" key="GridCell.Tab.0.bottom" timestamp="1604827992964">
+    <state x="294" y="100" width="1149" height="630" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1614973951149" />
+    <state x="556" y="155" key="com.intellij.ide.util.TipDialog" timestamp="1614973513539">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1150" height="132" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1604827992964" />
-    <state width="1150" height="132" key="GridCell.Tab.0.center" timestamp="1604827992963">
+    <state x="556" y="155" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1614973513539" />
+    <state x="530" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1614974653664">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1150" height="132" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1604827992963" />
-    <state width="1150" height="132" key="GridCell.Tab.0.left" timestamp="1604827992963">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1150" height="132" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1604827992963" />
-    <state width="1150" height="132" key="GridCell.Tab.0.right" timestamp="1604827992963">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1150" height="132" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1604827992963" />
-    <state x="556" y="155" key="com.intellij.ide.util.TipDialog" timestamp="1613309119871">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="556" y="155" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1613309119871" />
-    <state x="920" y="331" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605463183212">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="920" y="331" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1605463183212" />
-    <state x="674" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1605433678331">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="674" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1605433678331" />
+    <state x="530" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1614974653664" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
