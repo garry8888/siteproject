@@ -65,5 +65,5 @@ def load_bank_statements_data(url, sheet_numb, user_id):
         else:
             print('NOT LOAD')
             return 1
-    except JSONDecodeError:
+    except TypeError or JSONDecodeError:
         return 0
