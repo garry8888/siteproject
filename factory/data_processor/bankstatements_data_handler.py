@@ -5,7 +5,7 @@ from finance.models import Countries, MoneyTransaction, BankStatements
 from django.core.exceptions import ObjectDoesNotExist
 
 
-def check_last_update(user):  #проверка последней даты обновленной выписки
+def check_last_update(user):  # проверка последней даты обновленной выписки
     try:
         last_transaction = BankStatements.objects.filter(user=user).order_by('-date_of_trans')[0]
         exclude_duplicates = BankStatementsData.objects.filter(date_operation__gt=last_transaction.date_of_trans,
@@ -62,7 +62,7 @@ def create_bank_statements(user_id):
         print(row.id, row.purpose)
 
         if purpose.startswith('Покупка') or purpose.startswith('Зняття') or purpose.startswith('Списание'):
-            transaction = purpose.split(',')    #['Покупка (EPICENTR KAFE(P0019265)', ' Kyiv', ' UKR', 'MCC 5812)']
+            transaction = purpose.split(',')    # ['Покупка (EPICENTR KAFE(P0019265)', ' Kyiv', ' UKR', 'MCC 5812)']
             mcc = get_mcc(transaction[3])
             print(mcc)
 

@@ -2,7 +2,7 @@ import calendar
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 
-from grafic_matplotlib.core.forms import Calendar, UserChoice, ChoiceYear
+from grafic_matplotlib.core.forms import Calendar, UserChoice, ChoiceYear, ManualInput
 from grafic_matplotlib.models import Pie
 from grafic_matplotlib.figures import get_plot, get_bar_chart
 from grafic_matplotlib.analytics.query_data import amount_expenses, expenses_per_month
@@ -62,6 +62,7 @@ def index_p(request):
     if request.method == 'POST':
         form_cal = Calendar(request.POST)
         form_user = UserChoice(request.POST)
+        form_manual_input = ManualInput(request.POST)
 
         if form_cal.is_valid() and form_user.is_valid():
             s = form_cal.cleaned_data['date_field_start']
@@ -72,15 +73,18 @@ def index_p(request):
             return render(request, 'grafic_matplotlib/pie.html', {'pie_fig': pie_update,
                                                                   'sum_expenses': sum_transactions(u=choice_user, s=s, e=e),
                                                                   'amount_expenses': data_update, 'form_cal': form_cal,
-                                                                  'form_user': form_user})
+                                                                  'form_user': form_user,
+                                                                  'form_manual_input': form_manual_input})
 
     else:
         form_cal = Calendar()
         form_user = UserChoice()
+        form_manual_input = ManualInput(request.POST)
     return render(request, 'grafic_matplotlib/pie.html', {'pie_fig': pie_p,
                                                           'sum_expenses': sum_transactions(u=None, s=None, e=None),
                                                           'amount_expenses': expenses_per_category(u=None, s=None, e=None),
-                                                          'form_cal': form_cal, 'form_user': form_user})
+                                                          'form_cal': form_cal, 'form_user': form_user,
+                                                          'form_manual_input': form_manual_input})
 
 
 @login_required(login_url='/users/login/')

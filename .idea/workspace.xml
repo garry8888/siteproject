@@ -3,10 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="c0742b42-20c1-4485-9c48-940a47559169" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/factory/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/factory/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/finance/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/finance/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/static/grafic_matplotlib/wrapper.css" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/static/grafic_matplotlib/wrapper.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gsite/templates/gsite/wrapper.html" beforeDir="false" afterPath="$PROJECT_DIR$/gsite/templates/gsite/wrapper.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory/api_spreadsheets/handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/factory/api_spreadsheets/handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory/data_processor/bankstatements_data_handler.py" beforeDir="false" afterPath="$PROJECT_DIR$/factory/data_processor/bankstatements_data_handler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/factory/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/core/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/core/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/pie.html" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/templates/grafic_matplotlib/pie.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/grafic_matplotlib/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/grafic_matplotlib/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gsite/settings/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/gsite/settings/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,19 +48,19 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../trader-bot" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Антон\Desktop\Project\siteproject\grafic_matplotlib\static\grafic_matplotlib" />
-      <recent name="C:\Users\Антон\Desktop\Project\siteproject\gsite\static\gsite" />
-      <recent name="C:\Users\Антон\Desktop\Project\siteproject\gsite\templates\gsite" />
-      <recent name="C:\Users\Антон\Desktop\Project\siteproject\gsite\templates\site" />
-      <recent name="C:\Users\Антон\Desktop\Project\siteproject\gsite\templates" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Антон\Desktop\Project\siteproject\grafic_matplotlib\static\grafic_matplotlib" />
       <recent name="C:\Users\Антон\Desktop\Project\siteproject\factory\templates\factory" />
       <recent name="C:\Users\Антон\Desktop\Project\siteproject\factory\templates" />
       <recent name="C:\Users\Антон\Desktop\Project\siteproject\grafic_matplotlib\templates\grafic_matplotlib\include" />
       <recent name="C:\Users\Антон\Desktop\Project\siteproject\grafic_matplotlib\static\html" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Антон\Desktop\Project\siteproject\grafic_matplotlib\static\grafic_matplotlib" />
+      <recent name="C:\Users\Антон\Desktop\Project\siteproject\gsite\static\gsite" />
+      <recent name="C:\Users\Антон\Desktop\Project\siteproject\gsite\templates\gsite" />
+      <recent name="C:\Users\Антон\Desktop\Project\siteproject\gsite\templates\site" />
+      <recent name="C:\Users\Антон\Desktop\Project\siteproject\gsite\templates" />
     </key>
   </component>
   <component name="RunManager" selected="Python.figures">
@@ -148,22 +152,14 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="294" y="100" width="1149" height="630" key="DiffContextDialog" timestamp="1614973951149">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1624728638107">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="294" y="100" width="1149" height="630" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1614973951149" />
-    <state x="549" y="166" key="FileChooserDialogImpl" timestamp="1614979801573">
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1624728638107" />
+    <state x="556" y="155" key="com.intellij.ide.util.TipDialog" timestamp="1624721584457">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="166" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1614979801573" />
-    <state x="556" y="155" key="com.intellij.ide.util.TipDialog" timestamp="1614973513539">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="556" y="155" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1614973513539" />
-    <state x="530" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1614974653664">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="530" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1614974653664" />
+    <state x="556" y="155" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1624721584457" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -179,6 +175,13 @@
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
+      <default-breakpoints>
+        <breakpoint type="python-exception">
+          <properties notifyOnTerminate="true" exception="BaseException">
+            <option name="notifyOnTerminate" value="true" />
+          </properties>
+        </breakpoint>
+      </default-breakpoints>
     </breakpoint-manager>
   </component>
 </project>

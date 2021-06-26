@@ -4,7 +4,7 @@ from django import forms
 from django.contrib.auth.models import User
 
 
-#Календарь
+# Календарь
 from finance.models import BankStatements
 
 
@@ -23,11 +23,11 @@ class CalendarModelForms(forms.Form):
         widgets = {'date_field_start': DateInput()}
 
 
-#выбор пользователя для отображения данных
+# выбор пользователя для отображения данных
 class UserInput(forms.CheckboxSelectMultiple):
     input_type = 'checkbox'
-    #template_name = 'django/forms/widgets/checkbox_select.html'
-    #option_template_name = 'django/forms/widgets/checkbox_option.html'
+    # template_name = 'django/forms/widgets/checkbox_select.html'
+    # option_template_name = 'django/forms/widgets/checkbox_option.html'
 
 
 class UserChoice(forms.Form):
@@ -37,7 +37,18 @@ class UserChoice(forms.Form):
         widgets = {'user_field': UserInput()}
 
 
-#выбор года для гистограммы
+# ручной ввод расходов
+class ManualInput(forms.Form):
+    query = BankStatements.objects.all()
+    transaction_place = forms.CharField(label='Место', widget=forms.TextInput)
+    type_expenses = forms.ModelMultipleChoiceField(label='Тип расходов',
+                                                   queryset=query,
+                                                   widget=forms.Select)
+    type_transaction = forms.ModelMultipleChoiceField(label='Тип транзакции',
+                                                      queryset=query, widget=forms.Select)
+
+
+# выбор года для гистограммы
 class YearInput(forms.Select):
     input_type = 'select'
 
