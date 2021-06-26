@@ -60,7 +60,7 @@ def load_bank_statements_data(url, sheet_numb, user_id):
         find_duplicates = check_last_update_spreadsheet(d)
 
         if find_duplicates == 0:
-            BankStatementsData.objects.bulk_create([BankStatementsData(**r) for r in d])  # TODO исключить возможность записи дублей
+            BankStatementsData.objects.bulk_create([BankStatementsData(**r) for r in d])
             print('LOAD')
         else:
             print('NOT LOAD')
