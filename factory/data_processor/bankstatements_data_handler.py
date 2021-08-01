@@ -5,9 +5,20 @@ from finance.models import Countries, MoneyTransaction, BankStatements
 from django.core.exceptions import ObjectDoesNotExist
 
 
+def check_last_update(user):  # проверка последней даты обновленной выписки
+    try:
+        last_transaction = BankStatements.objects.filter(user=user).order_by('-date_of_trans')[0]
+        exclude_duplicates = BankStatementsData.objects.filter(date_operation__gt=last_transaction.date_of_trans,
+                                                               user=user)
+    except IndexError:
+        exclude_duplicates = BankStatementsData.objects.filter(user=user)
+    print(exclude_duplicates)
 
-def create_bank_statements():
-    data = BankStatementsData.objects.all()
+    return exclude_duplicates
+
+
+def create_bank_statements(user_id):
+    data = check_last_update(user_id)
     mcc_d = []
 
     def amount_transaction(transaction_sum):
@@ -48,11 +59,13 @@ def create_bank_statements():
     for row in data:
         purpose = row.purpose
         amount = row.amount
+        print(row.id, row.purpose)
 
-        if purpose.startswith('Покупка'):
-            transaction = purpose.split(',')  # ['Покупка (EPICENTR KAFE(P0019265)', ' Kyiv', ' UKR', 'MCC 5812)']
+        if purpose.startswith('Покупка') or purpose.startswith('Зняття') or purpose.startswith('Списание'):
+            transaction = purpose.split(',')    # ['Покупка (EPICENTR KAFE(P0019265)', ' Kyiv', ' UKR', 'MCC 5812)']
             mcc = get_mcc(transaction[3])
-            print(mcc, transaction)
+            print(mcc)
+
             mcc_d.append(dict(
                 transaction_place=transaction[0],
                 type_expenses_id=Mcc.objects.get(mcc=mcc).type_expenses_id,
@@ -61,9 +74,11 @@ def create_bank_statements():
                 currency_id=currency(transaction[2].lstrip()),
                 country_id=country(transaction[2].lstrip()),
                 date_of_trans=row.date_operation,
-                user_id=User.objects.get(id=row.user_id).id
+                user_id=user_id,
+                original_id=row.id
             ))
-        if not purpose.startswith('Покупка'):
+
+        else:
             mcc_d.append(dict(
                 transaction_place=purpose,
                 type_expenses_id=12,
@@ -72,7 +87,8 @@ def create_bank_statements():
                 currency_id=None,
                 country_id=None,
                 date_of_trans=row.date_operation,
-                user_id=User.objects.get(id=1).id
+                user_id=user_id,
+                original_id=row.id
             ))
 
     BankStatements.objects.bulk_create([BankStatements(**r) for r in mcc_d])

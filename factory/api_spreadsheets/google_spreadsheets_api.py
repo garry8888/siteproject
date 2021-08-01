@@ -1,12 +1,9 @@
-from django.contrib.auth.models import User
-
 from finance.models import Currency, Countries, TypeExpenses
 from factory.models import BankStatementsData, Mcc
 from django.core.exceptions import ObjectDoesNotExist
 import json
 import requests
-from datetime import datetime
-from decimal import *
+
 
 # api_spreadsheets gsx2json
 #TODO оптимизировать код, убрать повторяющиеся path
@@ -50,31 +47,6 @@ def append_country(func=json_get()):
             country.save()
         except ObjectDoesNotExist:
             pass
-
-# create BankStatements list in the model BankStatementsData https://docs.google.com/spreadsheets/d/e/2PACX-1vQmfEyjQbh1TMyF7wftZWOyEW42iTSyAbnaif0dgAgX-P6xxt7QKpnbdT-eHOlyR9WFh16Gy4PYNweG/pubhtml?gid=885799634&single=true
-def load_bank_statements_data(path='http://gsx2json.com/api?id=1t3iHjR_pPDyV3PL4MyIxX287NqsyiiaBMWogQ9JEh00&sheet=2'):
-    response = requests.get(path)
-    data_spreadsheet = json.loads(response.text)
-    data_db = data_spreadsheet['rows']
-
-    def numbers(data):              #TODO не убирает пробелы из числа: 1 000 000
-        if type(data) == int:
-            nums = Decimal(data)
-        if type(data) == str:
-            nums = Decimal(data.replace(',', '.'))
-        return nums
-
-    d = []
-    for i in data_db:
-
-        d.append(dict(
-            purpose=i["призначення"],
-            amount=numbers(i["сума"]),
-            date_operation=datetime.strptime(i["датаоперації"], "%d.%m.%Y"),
-            user_id=User.objects.get(id=i['user']).id
-        ))
-
-    BankStatementsData.objects.bulk_create([BankStatementsData(**r) for r in d])
 
 
 # create TypeExpenses catalogue in the model TypeExpenses

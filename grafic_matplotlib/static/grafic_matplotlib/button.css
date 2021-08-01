@@ -1,0 +1,15 @@
+.button {
+    display: inline-block;
+    text-align: centre;
+    height: 35px;
+    width: 40px;
+    float: right;
+    margin-right: 40%;
+    margin-top: 0.5%;
+    background: url(/transition.png) 0 0 no-repeat;
+    transition: background 0.2s ease;
+}
+
+button:hover {
+    background-image: url(/transition-active.png);
+}

@@ -1,8 +1,7 @@
 {% block content %}
-                <table id="t01">
-                    <caption>
-                        <h3>Месячные расходы</h3>
-                    </caption>
+                <table id="t01" width="50%">
+                    {% load static %}
+                    <link rel="stylesheet" type="text/css" href="{% static 'grafic_matplotlib/table.css' %}">
                     <tr>
                         <th>Статья расходов</th>
                         <th>Сумма расходов, грн.</th>
@@ -21,7 +20,5 @@
                         <td><strong>{{sum_expenses}}</strong></td>
                         <td><strong>100%</strong></td>
                     </tr>
-                    {% load static %}
-                    <link rel="stylesheet" href="{% static 'css/table.css' %}">
                 </table>
 {% endblock %}

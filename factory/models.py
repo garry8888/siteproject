@@ -18,6 +18,9 @@ class Mcc(models.Model):
     category = models.CharField(max_length=100)
     type_expenses = models.ForeignKey('finance.TypeExpenses', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f'{self.mcc} - {self.name}: ({self.category} - {self.type_expenses})'
+
 
 """"
 class CatalogPlacesExpenses(models.Model):

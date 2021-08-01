@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_matplotlib',
+    'bootstrap4',
     'crispy_forms'
 ]
 
@@ -68,8 +69,11 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': ['templates/admin/',
+                 'gsite/templates/',
                  'grafic_matplotlib/templates/',
-                 'users/templates/users/'],
+                 'users/templates/users/',
+                 'factory/templates/factory/'
+                 ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

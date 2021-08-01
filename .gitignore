@@ -1,4 +1,7 @@
 .env
 .venv
-.idea
-/.idea
+.idea/
+/.idea/
+__pycache__/
+static
+*.xml

@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    path('analytics/', include('factory.urls')),
     path('users/', include('users.urls')),
     path('analytics/', include('grafic_matplotlib.urls')),
     path('finance/', include('finance.urls')),

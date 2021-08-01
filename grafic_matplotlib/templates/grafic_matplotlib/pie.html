@@ -1,26 +1,43 @@
-{% extends "grafic_matplotlib/wrapper.html" %}
+{% extends "gsite/wrapper.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
         <title>Pie</title>
-        <div>
+        <div class="text-center">
             <h1><strong>Доля расходов %</strong></h1>
         </div>
-            <form method="POST" class="post-form">{% csrf_token %}
-                {{ form }}
-                <button type="submit" class="save btn btn-default">Ok</button>
-                {{ debug }}
+        <div class="tool-bar">
+            <form method="POST" class="form-inline" style="border: 3px solid #b0c4de; width: 100%">
+                <div class="inline-block">
+                    {% csrf_token %}
+                    {{ form_cal|crispy }}
+                    {{ form_user|crispy }}
+                    {% load static %}
+                    <link rel="stylesheet" type="text/css" href="{% static 'grafic_matplotlib/button.css' %}">
+                    <button type="submit" class="btn btn-primary btn-inline" style="width: 5%">Ok</button>
+                </div>
             </form>
-        <div>
-            <fieldset class="module aligned ", style="width:100%">
+        </div>
+        <div class="inline-block" style="float: left; width: 40%; height: 80%; border: 3px solid #b0c4de; padding: 0px">
+            <fieldset class="module aligned " style="width: 100%">
                 <div class="form-row field-figure">
                     <div>
                         <label for="id_figure">
-                            <img src="data:image/png;base64, {{pie_fig|safe}}" width="800px" height="560px" class="img-thumbnail">
+                            <img src="data:image/png;base64, {{pie_fig|safe}}" width="100%" class="img-thumbnail">
                         </label>
                     </div>
                 </div>
             </fieldset>
-            <div>
-                {% include "grafic_matplotlib/includes/table.html" %}
-            </div>
         </div>
+        <div class="inline-block" style="float: left; width: 40%; border: 3px solid #b0c4de; padding: 10px">
+                {% include "grafic_matplotlib/includes/table.html" %}
+                </div>
+    <div class="inline-block" style="float: left; width: 20%; border: 3px solid #b0c4de; padding: 0px">
+        <form action="" method="POST" novalidate>
+            {% csrf_token %}
+            {{ form_manual_input|crispy }}
+            {% load static %}
+            <link rel="stylesheet" type="text/css" href="{% static 'grafic_matplotlib/button.css' %}">
+            <button type="submit" class="btn btn-primary btn-inline" style="width: 20%">Ok</button>
+        </form>
+    </div>
 {% endblock %}
