@@ -91,4 +91,5 @@ def create_bank_statements(user_id):
                 original_id=row.id
             ))
 
-    BankStatements.objects.bulk_create([BankStatements(**r) for r in mcc_d])
+    # BankStatements.objects.bulk_create([BankStatements(**r) for r in mcc_d])
+    print('LOAD', mcc_d)

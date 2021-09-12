@@ -13,14 +13,15 @@ def check_last_update(new_data):
     user = data['user_id']
     try:
         exclude_duplicates = BankStatementsData.objects.\
-            get(date_operation=datetime.strptime(new_date, "%d.%m.%Y").date(), user=user, amount=new_amount)
+            get(date_operation=new_date.date(), user=user, amount=new_amount)
     except ObjectDoesNotExist:
         exclude_duplicates = 0
 
     return exclude_duplicates
 
 
-def load_bank_statement(new_data, user_id):
+def load_bank_statement(pdf_file, user_id):
+    new_data = get_pdf_data(pdf_file)
 
     def numbers(num):
         try:
@@ -50,13 +51,19 @@ def load_bank_statement(new_data, user_id):
         count = 1
         while count < len_data:
             try:
-                d.append(dict(
-                    purpose=i[count][3].replace('\n', ' '),
-                    amount=numbers(i[count][2] if i[count][2] != '' else 0),  # если Витрати -'', ставим 0
-                    date_operation=i[count][0].split()[0],  # datetime.strptime(i[count][0].split()[0], "%d.%m.%Y").date()
-                    user_id=user_id
-                ))
-                count += 1
+                if i[count][2] == i[count][1] == '':  # delete trash data (['00:00:00', '', '', 'MCC 6012)', ''])
+                    print('------- del data:', i[count])
+                    del i[count]
+                else:
+                    print('------- list:', i[count])
+                    print('-------- date:', i[count][0])
+                    d.append(dict(
+                        purpose=i[count][3].replace('\n', ' '),
+                        amount=numbers(i[count][2] if i[count][2] != '' else 0),  # если Витрати -'', ставим 0
+                        date_operation=datetime.strptime(i[count][0].split()[0], "%d.%m.%Y"),  # datetime.strptime(i[count][0].split()[0], "%d.%m.%Y").date()  i[count][0].split()[0]
+                        user_id=user_id
+                    ))
+                    count += 1
             except IndexError:
                 break
         else:
@@ -66,7 +73,6 @@ def load_bank_statement(new_data, user_id):
 
     if find_duplicates == 0:
         #BankStatementsData.objects.bulk_create([BankStatementsData(**r) for r in d])
-        #TODO django.core.exceptions.ValidationError: ['“31.08.2021” value has an invalid date format. It must be in YYYY-MM-DD format.']
         print('LOAD')
     else:
         print('NOT LOAD')
