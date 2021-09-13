@@ -47,11 +47,6 @@ def update_bank_statements_data(request):   #обновление данных �
 
     return render(request, 'factory/google_api_spreadsheet/update_bankstatements.html', {'form_url': form_url})
 
-def handle_uploaded_file(f):
-    with open('media/["file"]', 'wb+') as destination:
-        for chunk in f.chunks():
-            destination.write(chunk)
-
 
 @login_required(login_url='/users/login/')
 def update_bank_statements_data_pdf(request):
@@ -63,12 +58,12 @@ def update_bank_statements_data_pdf(request):
         file = request.FILES['document']
         print(type(file))
 
-        if form_pdf.is_valid(): # TODO убрать POST при перезагрузке страницы
+        if form_pdf.is_valid():
             form_pdf.save()
             update_bankstatementsdata = load_bank_statement(pdf_file="%s\%s" % (MEDIA_ROOT, str(file)), user_id=user.id)
 
             if update_bankstatementsdata == 0:
-                confirmation = 'Информация не загружена. Документ опубликован в интернете?'
+                confirmation = 'Информация не загружена. Формат файла не поддерживается'
                 confirm = 'Ошибка. Выписка не обновлена'
             elif update_bankstatementsdata == 1:
                 confirmation = 'Информация не загружена. Удалите из документа ранее загруженную информацию'
@@ -83,8 +78,8 @@ def update_bank_statements_data_pdf(request):
                 except Exception:
                     confirm = 'Ошибка. Выписка не обновлена'
 
-            return render(request, 'factory/pdf_update/update_pdf.html',
-                          {'form_pdf': form_pdf, 'confirmation': confirmation, 'confirm': confirm})
+            return render(request, 'factory/pdf_update/success_update.html',
+                          {'confirmation': confirmation, 'confirm': confirm})
 
     else:
         form_pdf = PdfForm(request.POST)
