@@ -32,7 +32,8 @@ def load_bank_statement(pdf_file, user_id):
                 nums = Decimal(num)
                 return nums
             if type(num) == str:
-                nums = Decimal(num.replace(' ', '').replace(',', '.'))  # убирает пробелы из числа: 1 000 000, замена , на .
+                # убирает пробелы из числа: 1 000 000, замена , на .
+                nums = Decimal(num.replace(' ', '').replace(',', '.'))
                 return nums
             if type(num) == list:
                 print('list', num)
@@ -55,14 +56,14 @@ def load_bank_statement(pdf_file, user_id):
         while count < len_data:
             try:
                 if i[count][2] == i[count][1] == '':  # delete trash data (['00:00:00', '', '', 'MCC 6012)', ''])
-                    print('------- del data:', i[count])
+                    # print('------- del data:', i[count])
                     del i[count]
                 else:
-                    print('------- list:', i[count])
-                    print('-------- date:', i[count][0])
+                    # print('------- list:', i[count])
+                    # print('-------- date:', i[count][0])
                     d.append(dict(
                         purpose=i[count][3].replace('\n', ' '),
-                        amount=numbers(i[count][2] if i[count][2] != '' else 0),  # если Витрати -'', ставим 0
+                        amount=numbers(i[count][2] if i[count][2] != '' else i[count][1] if i[count][1] != '' else 1),  # если Витрати -'' и 'Надходження' '', ставим 1
                         date_operation=datetime.strptime(i[count][0].split()[0], "%d.%m.%Y"),  # datetime.strptime(i[count][0].split()[0], "%d.%m.%Y").date()  i[count][0].split()[0]
                         user_id=user_id
                     ))
@@ -75,7 +76,7 @@ def load_bank_statement(pdf_file, user_id):
     find_duplicates = check_last_update(d)
 
     if find_duplicates == 0:
-        #BankStatementsData.objects.bulk_create([BankStatementsData(**r) for r in d])
+        BankStatementsData.objects.bulk_create([BankStatementsData(**r) for r in d])
         print('LOAD')
     else:
         print('NOT LOAD')

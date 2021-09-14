@@ -11,7 +11,7 @@ from users.core.get_user import user_from_session_key
 
 
 @login_required(login_url='/users/login/')
-def update_bank_statements_data(request):   #обновление данных по банковской выписке BankStatementsData
+def update_bank_statements_data(request):   # обновление данных по банковской выписке BankStatementsData
     session_k = request.session.session_key
     user = user_from_session_key(session_k)
 
@@ -48,6 +48,7 @@ def update_bank_statements_data(request):   #обновление данных �
     return render(request, 'factory/google_api_spreadsheet/update_bankstatements.html', {'form_url': form_url})
 
 
+# обновление данных из PDF выписки
 @login_required(login_url='/users/login/')
 def update_bank_statements_data_pdf(request):
     session_k = request.session.session_key

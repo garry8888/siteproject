@@ -13,6 +13,7 @@ def get_pdf_data(pdf_file):
         for data in list_data:
             try:
                 while data[0][0] != 'Дата та час' or data[0][4] == 'null':
+                    print(data[0])
                     del data[0]
                 else:
                     break
