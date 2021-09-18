@@ -83,7 +83,7 @@ def get_plot(users, s_day, e_day):
     ax1.pie(sizes, labels=labels, autopct='%1.1f%%',
             shadow=False, startangle=120)
     ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
-    fig1.set_facecolor('#afeeee')  # color of the background
+    fig1.set_facecolor('#00CED1')  # color of the background
     graph = get_pie()
 
     return graph

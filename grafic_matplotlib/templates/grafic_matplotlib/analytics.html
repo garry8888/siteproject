@@ -1,27 +1,77 @@
 {% extends "gsite/wrapper.html" %}
 {% block content %}
-        <title>Analytics</title>
-        <div>
-            <h1>Analytics family expenses</h1>
+    <title>Analytics</title>
+    <div class="text-center">
+        <h1><strong>Analytics family expenses</strong></h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <img src="pie.jpg" width=”100%” class="img-thumbnail">
+                    </div>
+                    <div class="panel-footer" style="background: #00CED1">
+                        <h3><a class="btn btn-primary btn-lg active" href="pie/" role="button" style="text-align: centre; margin: 0 auto ; width: 100%; height: 80%">Percent expenses pie</a> </h3>
+                        <p>Круговая диаграмма затрат в разрезе категорий</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <img src="media/pie.jpg" width=”100%” class="img-thumbnail">
+                    </div>
+                    <div class="panel-footer" style="background: #00CED1">
+                        <h3><a class="btn btn-primary btn-lg active" href="diagram/" role="button" style="text-align: centre; margin: 0 auto ; width: 100%; height: 80%">Bar Chart</a> </h3>
+                        <p>Расходы помесячно</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <img src="media/pie.jpg" width=”100%” class="img-thumbnail">
+                    </div>
+                    <div class="panel-footer" style="background: #00CED1">
+                        <h3><a class="btn btn-primary btn-lg active" href="planning/" role="button" style="text-align: centre; margin: 0 auto ; width: 100%; height: 80%">Planning</a> </h3>
+                        <p>In development</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <img src="media/pie.jpg" width=”100%” class="img-thumbnail">
+                    </div>
+                    <div class="panel-footer" style="background: #00CED1">
+                        <h3><a class="btn btn-primary btn-lg active" href="update_pdf/" role="button" style="text-align: centre; margin: 0 auto ; width: 100%; height: 80%">Update Data From PDF File</a> </h3>
+                        <p>Загрузка банковской выписки из PDF файла</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <img src="media/pie.jpg" width=”100%” class="img-thumbnail">
+                    </div>
+                    <div class="panel-footer" style="background: #00CED1">
+                        <h3><a class="btn btn-primary btn-lg active" href="factory/" role="button" style="text-align: centre; margin: 0 auto ; width: 100%; height: 80%">Update Data</a> </h3>
+                        <p>Загрузка банковской выписки</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <img src="pie.jpg" width=”100%” class="img-thumbnail">
+                    </div>
+                    <div class="panel-footer" style="background: #00CED1">
+                        <h3><a class="btn btn-primary btn-lg active" href="pie/" role="button" style="text-align: centre; margin: 0 auto ; width: 100%; height: 80%">Exchange rate</a></h3>
+                        <p>Курс валют</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="container" style="float: left; width: 30%; border: 3px solid #b0c4de; padding: 0px">
-            <div class="row1">
-                <h3><a href="pie/">Percent expenses pie</a> </h3>
-                <p>Круговая диаграмма затрат в разрезе категорий</p>
-            </div>
-
-            <div>
-                <h3><a href="diagram/">Bar Chart</a> </h3>
-                <p>Расходы помесячно</p>
-            </div>
-
-            <div>
-                <h3><a href="planning/">Planning</a> </h3>
-                <p>In development</p>
-            </div>
-            <div>
-                <h3><a href="factory/">Update Data</a> </h3>
-                <p>Загрузка банковской выписки</p>
-            </div>
-        </div>
+    </div>
 {% endblock %}

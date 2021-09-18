@@ -1,34 +1,48 @@
 {% extends "gsite/wrapper.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-        <title>Bar Chart</title>
-        <div class="text-center">
-            <h1><strong>Гистограмма расходов</strong></h1>
+    <title>Bar Chart</title>
+    <div class="panel panel-default">
+        <div class="panel-body" style="background: #00CED1">
+            <form method="POST" class="form-inline">
+                <div class="inline-block">
+                    {% csrf_token %}
+                    {{ form_year|crispy }}
+                    {{ form_user|crispy }}
+                    {% load static %}
+                    <link rel="stylesheet" type="text/css" href="{% static 'grafic_matplotlib/button.css' %}">
+                    <button type="submit" class="btn btn-primary btn-inline">Ok</button>
+                </div>
+            </form>
         </div>
-            <div class="tool-bar">
-                <form method="POST" class="form-inline" style="border: 3px solid #b0c4de">
-                    <div class="inline-block">
-                        {% csrf_token %}
-                        {{ form_year|crispy }}
-                        {{ form_user|crispy }}
-                        {% load static %}
-                        <link rel="stylesheet" type="text/css" href="{% static 'grafic_matplotlib/button.css' %}">
-                        <button type="submit" class="btn btn-primary btn-block" style="float: right; margin-right: 85%; margin-top: 0.5%; width: 5%">Ok</button>
-                    </div>
-                </form>
-            </div>
-        <div class="inline-block" style="float: left; width: 50%; border: 3px solid #b0c4de; padding: 0px">
-            <fieldset class="module aligned " style="width:100%">
-                <div class="form-row field-figure">
-                    <div>
-                        <label for="id_figure">
-                            <img src="data:image/png;base64, {{bar_char|safe}}" width="800px" height="560px" class="img-thumbnail">
-                        </label>
+    </div>
+    <div class="text-center">
+        <h1><strong>Гистограмма расходов</strong></h1>
+    </div>
+    <div class="inline-block">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <fieldset class="module aligned " style="width:100%">
+                            <div class="form-row field-figure">
+                                <div>
+                                    <label for="id_figure">
+                                        <img src="data:image/png;base64, {{bar_char|safe}}" width="800px" height="560px" class="img-thumbnail">
+                                    </label>
+                                </div>
+                            </div>
+                    </fieldset>
                     </div>
                 </div>
-            </fieldset>
             </div>
-        <div class="inline-block" style="float: right; width: 50%; border: 3px solid #b0c4de; padding: 0px">
-            {% include "grafic_matplotlib/includes/table_month.html" %}
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                       {% include "grafic_matplotlib/includes/table_month.html" %}
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 {% endblock %}

@@ -29,3 +29,9 @@ class CatalogPlacesExpenses(models.Model):
     city = models.CharField(max_length=30)
     mcc = models.ForeignKey(Mcc, on_delete=models.CASCADE)
 """
+
+
+class Document(models.Model):
+    description = models.CharField(max_length=255, blank=False)
+    document = models.FileField(blank=False)
+    uploaded_at = models.DateTimeField(auto_now_add=True)
