@@ -10,3 +10,4 @@ django-crispy-forms==1.11.0
 django-bootstrap4==2.3.1
 ghostscript==0.7
 camelot-py==0.10.1
+opencv-python==4.5.3.56
