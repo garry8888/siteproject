@@ -52,7 +52,7 @@ def month_expenses(u, y):
 
 @login_required(login_url='/users/login/')
 def index(request):
-    return render(request, 'grafic_matplotlib/analytics.html', {})
+    return render(request, 'grafic_matplotlib/analytics.html')
 
 
 @login_required(login_url='/users/login/')
