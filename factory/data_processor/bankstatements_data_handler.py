@@ -68,20 +68,36 @@ def create_bank_statements(user_id):
 
         if purpose.startswith('Покупка') or purpose.startswith('Зняття') or purpose.startswith('Списание'):
             transaction = purpose.split(',')    # ['Покупка (EPICENTR KAFE(P0019265)', ' Kyiv', ' UKR', 'MCC 5812)']
-            mcc = get_mcc(transaction[3])
-            # print('---STRING 68', mcc)
+            len_transaction = len(transaction) - 1
+            mcc = get_mcc(transaction[len_transaction])
+            print('---STRING 68', transaction, mcc)
 
-            mcc_d.append(dict(
-                transaction_place=transaction[0],
-                type_expenses_id=Mcc.objects.get(mcc=mcc).type_expenses_id if mcc != '' else 12,  # TODO adding new MCC to DB
-                type_transaction_id=MoneyTransaction.objects.get(type_transaction_en=amount_transaction(amount)).id,
-                sum_transaction=amount,
-                currency_id=currency(transaction[2].lstrip()),
-                country_id=country(transaction[2].lstrip()),
-                date_of_trans=row.date_operation,
-                user_id=user_id,
-                original_id=row.id
-            ))
+            try:
+                mcc_d.append(dict(
+                    transaction_place=transaction[0],
+                    type_expenses_id=Mcc.objects.get(mcc=mcc).type_expenses_id if mcc != '' else 12,  # TODO adding new MCC to DB
+                    type_transaction_id=MoneyTransaction.objects.get(type_transaction_en=amount_transaction(amount)).id,
+                    sum_transaction=amount,
+                    currency_id=currency(transaction[2].lstrip()),
+                    country_id=country(transaction[2].lstrip()),
+                    date_of_trans=row.date_operation,
+                    user_id=user_id,
+                    original_id=row.id
+                ))
+
+            except ObjectDoesNotExist:
+                print('---STRING 90', transaction, mcc)
+                mcc_d.append(dict(
+                    transaction_place=transaction[0],
+                    type_expenses_id=12,  # TODO adding new MCC to DB
+                    type_transaction_id=MoneyTransaction.objects.get(type_transaction_en=amount_transaction(amount)).id,
+                    sum_transaction=amount,
+                    currency_id=currency(transaction[2].lstrip()),
+                    country_id=country(transaction[2].lstrip()),
+                    date_of_trans=row.date_operation,
+                    user_id=user_id,
+                    original_id=row.id
+                ))
 
         else:
             # print('----STRING 83', purpose)
