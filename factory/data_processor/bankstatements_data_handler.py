@@ -68,8 +68,9 @@ def create_bank_statements(user_id):
 
         if purpose.startswith('Покупка') or purpose.startswith('Зняття') or purpose.startswith('Списание'):
             transaction = purpose.split(',')    # ['Покупка (EPICENTR KAFE(P0019265)', ' Kyiv', ' UKR', 'MCC 5812)']
-            mcc = get_mcc(transaction[3])
-            # print('---STRING 68', mcc)
+            len_transaction = len(transaction) - 1
+            mcc = get_mcc(transaction[len_transaction])
+            print('---STRING 68', transaction, mcc)
 
             mcc_d.append(dict(
                 transaction_place=transaction[0],
