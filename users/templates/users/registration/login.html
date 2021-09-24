@@ -2,18 +2,11 @@
 {% load crispy_forms_tags %}
 
 {% block main %}
-<div class="card">
-<div class="card-body">
-<h4 class="card-title">Log in to your account</h4>
-
-<form method="post">
-{% csrf_token %}
-<input type="hidden" name="next" value="{{ next }}">
-
-{{ form|crispy }}
-
-<button type="submit" class="btn btn-primary btn-lg" style="width: 100%">Log in</button>
-</form>
-</div>
-</div>
+    <h4 class="text-center">Log in to your account</h4>
+    <form method="post" style="width: 100%">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}">
+        {{ form|crispy }}
+    <button type="submit" class="btn btn-primary btn-lg" style="width: 100%">Log in</button>
+    </form>
 {% endblock %}

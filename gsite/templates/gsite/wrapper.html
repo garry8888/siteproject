@@ -9,29 +9,45 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"  crossorigin="anonymous">
         <link rel="stylesheet" href="{% static 'grafic_matplotlib/wrapper.css' %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     </head>
-        <div class="width width_padding" id="header">
-            <div class="width-inner" id="branding">
-                <h1 id="site-name">Home expense analytics</h1>
+    <div class="width width_padding" style="color: #202125">
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#" style="color: #ebeb0e"><span class="glyphicon glyphicon-stats" style="color: #ebeb0e"></span>  HomeExpenseAnalytics</a>
             </div>
-        <div id="user-tools">
-            Welcome,
-            <em>{{ user.first_name }}</em>.
-            <a href="/users/password-change/">Change password</a> /
-            <a href="/users/login/">Log in</a> /
-            <a href="/users/logout/">Log out</a>
-        </div>
-    <div class="breadcrumbs">
-        <a href="/analytics/">Главная</a>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li><a href="/analytics/"><span class="glyphicon glyphicon-home" style="color: #ebeb0e"></span> Home</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                        <li><a href="#"><span class="glyphicon glyphicon-user" style="color: #ebeb0e"></span> {{ user.first_name }}</a></li>
+                        <li><a href="/users/password-change/"><span class="glyphicon glyphicon-pencil" style="color: #ebeb0e"></span> Change password</a></li>
+                        <li><a href="/users/logout/"><span class="glyphicon glyphicon-log-out" style="color: #ebeb0e"></span> Log Out</a></li>
+                    {% else %}
+                        <li><a href="#"><span class="glyphicon glyphicon-user" style="color: #ebeb0e"></span> Sign Up</a></li>
+                        <li><a href="/users/login/"><span class="glyphicon glyphicon-log-out" style="color: #ebeb0e"></span> Log In</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+          </div>
+        </nav>
     </div>
-</div>
-<body>
-    <style>
-        body {
-            background: #f5f5f5
-        }
-    </style>
-    {% block content %}
-    {% endblock %}
-</body>
+    <body>
+        <style>
+            body {
+                background: #f5f5f5
+            }
+        </style>
+        {% block content %}
+        {% endblock %}
+    </body>
 </html>
