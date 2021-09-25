@@ -57,12 +57,12 @@ def index(request):
 
 @login_required(login_url='/users/login/')
 def index_p(request):
-    pie_p = Pie.figure.source
+    pie_update = get_plot(users=[1, 2], s_day='2021-08-01', e_day='2021-08-31')
 
     if request.method == 'POST':
         form_cal = Calendar(request.POST)
         form_user = UserChoice(request.POST)
-        form_manual_input = ManualInput(request.POST)
+        # form_manual_input = ManualInput(request.POST)
 
         if form_cal.is_valid() and form_user.is_valid():
             s = form_cal.cleaned_data['date_field_start']
@@ -73,18 +73,18 @@ def index_p(request):
             return render(request, 'grafic_matplotlib/pie.html', {'pie_fig': pie_update,
                                                                   'sum_expenses': sum_transactions(u=choice_user, s=s, e=e),
                                                                   'amount_expenses': data_update, 'form_cal': form_cal,
-                                                                  'form_user': form_user,
-                                                                  'form_manual_input': form_manual_input})
+                                                                  'form_user': form_user})
+                                                                  # 'form_manual_input': form_manual_input})
 
     else:
         form_cal = Calendar()
         form_user = UserChoice()
-        form_manual_input = ManualInput(request.POST)
-    return render(request, 'grafic_matplotlib/pie.html', {'pie_fig': pie_p,
+        # form_manual_input = ManualInput(request.POST)
+    return render(request, 'grafic_matplotlib/pie.html', {'pie_fig': pie_update,
                                                           'sum_expenses': sum_transactions(u=None, s=None, e=None),
                                                           'amount_expenses': expenses_per_category(u=None, s=None, e=None),
-                                                          'form_cal': form_cal, 'form_user': form_user,
-                                                          'form_manual_input': form_manual_input})
+                                                          'form_cal': form_cal, 'form_user': form_user})
+                                                          # 'form_manual_input': form_manual_input})
 
 
 @login_required(login_url='/users/login/')
