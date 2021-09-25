@@ -7,20 +7,19 @@
         <title>Success update</title>
     </head>
         <body>
-            <div class="text-center">
-                <h1><strong>Загрузка банковской выписки</strong></h1>
-            </div>
-            <div class="card" style="text-align: centre; margin: 35%; margin-top: 5%; border: 3px solid #b0c4de; border-collapse: collapse; width: 30%">
-                <link  rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"  crossorigin="anonymous">
-                <div class="card-body">
-                    <p>{{ confirmation }}</p>
-                    <p>{{ confirm }}</p>
-                    <a href="/analytics/update_pdf/">
-                        <button type="submit" class="btn btn-primary btn-block" style="text-align: centre; margin: 0 auto ; width: 30%; height: 80%">Повторить загрузку</button>
-                    </a>
-                    <a href="/analytics/">
-                        <button type="submit" class="btn btn-primary btn-block" style="text-align: centre; margin: 0 auto ; width: 30%; height: 80%">На главную</button>
-                    </a>
+            <h1 class="text-center">Загрузка анковской выписки</h1>
+            <div class="col-lg-4" style="position: absolute; top: auto; right: 0; left: 0; margin: auto">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <p>{{ confirmation }}</p>
+                        <p>{{ confirm }}</p>
+                        <a href="/analytics/update_pdf/">
+                            <button type="submit" class="btn btn-primary btn-block" style="text-align: centre; margin: 0 auto ; width: 30%; height: 80%">Повторить загрузку</button>
+                        </a>
+                        <a href="/analytics/">
+                            <button type="submit" class="btn btn-primary btn-block" style="text-align: centre; margin: 0 auto ; width: 30%; height: 80%">На главную</button>
+                        </a>
+                    </div>
                 </div>
             </div>
         </body>

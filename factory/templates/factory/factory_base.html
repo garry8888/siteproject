@@ -1,13 +1,13 @@
 {% extends "gsite/wrapper.html" %}
 {% block content %}
-<body>
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-4">
-      {% block main %}
-      {% endblock %}
+  <body>
+      <div class="col-lg-4" style="position: absolute; top: 20%; right: 0; left: 0; margin: auto">
+          <div class="panel panel-default">
+              <div class="panel-body">
+                  {% block main %}
+                  {% endblock %}
+              </div>
+          </div>
       </div>
-    </div>
-  </div>
-</body>
+  </body>
 {% endblock %}
