@@ -1,4 +1,4 @@
-{% extends 'factory_base.html' %}
+{% extends 'factory/factory_base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
   <title>Update</title>
@@ -9,7 +9,7 @@
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form_pdf|crispy}}
-        <button type="submit" class="btn btn-primary btn-block" style="text-align: centre; margin: 0 auto ; width: 20%; height: 80%">Ok</button>
+        <button type="submit" class="btn btn-primary btn-block" style="text-align: center; margin: auto ; width: 20%; height: 80%">Ok</button>
         </form>
       </div>
     </div>

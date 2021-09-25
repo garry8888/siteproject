@@ -25,19 +25,19 @@ def update_bank_statements_data(request):   # обновление данных 
 
             if update_bankstatementsdata == 0:
                 confirmation = 'Информация не загружена. Документ опубликован в интернете?'
-                confirm = 'Ошибка. Выписка не обновлена'
+                confirm = 'Выписка не обновлена'
             elif update_bankstatementsdata == 1:
-                confirmation = 'Информация не загружена. Удалите из документа ранее загруженную информацию'
-                confirm = 'Ошибка. Выписка не обновлена'
+                confirmation = 'Удалите из документа ранее загруженную информацию'
+                confirm = 'Выписка не обновлена'
             else:
-                confirmation = 'Информация загружена.'
+                confirmation = 'Информация загружена'
 
                 try:
                     update_bankstatements = create_bank_statements(user_id=user.id)
                     confirm = 'Выписка обновлена'
 
                 except Exception:
-                    confirm = 'Ошибка. Выписка не обновлена'
+                    confirm = 'Выписка не обновлена'
 
             return render(request, 'factory/google_api_spreadsheet/update_bankstatements.html',
                           {'form_url': form_url, 'confirmation': confirmation, 'confirm': confirm})
@@ -64,11 +64,11 @@ def update_bank_statements_data_pdf(request):
             update_bankstatementsdata = load_bank_statement(pdf_file="%s\%s" % (MEDIA_ROOT, str(file)), user_id=user.id)
 
             if update_bankstatementsdata == 0:
-                confirmation = 'Информация не загружена. Формат файла не поддерживается'
-                confirm = 'Ошибка. Выписка не обновлена'
+                confirmation = 'Формат файла не поддерживается'
+                confirm = 'Выписка не обновлена'
             elif update_bankstatementsdata == 1:
-                confirmation = 'Информация не загружена. Удалите из документа ранее загруженную информацию'
-                confirm = 'Ошибка. Выписка не обновлена'
+                confirmation = 'Удалите из документа ранее загруженную информацию'
+                confirm = 'Выписка не обновлена'
             else:
                 confirmation = 'Информация загружена.'
 
@@ -77,7 +77,7 @@ def update_bank_statements_data_pdf(request):
                     confirm = 'Выписка обновлена'
 
                 except Exception:
-                    confirm = 'Ошибка. Выписка не обновлена'
+                    confirm = 'Выписка не обновлена'
 
             return render(request, 'factory/pdf_update/success_update.html',
                           {'confirmation': confirmation, 'confirm': confirm})

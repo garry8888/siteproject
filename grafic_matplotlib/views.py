@@ -1,11 +1,14 @@
 import calendar
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 from django.shortcuts import render
 
+from finance.models import BankStatements, MoneyTransaction, TypeExpenses
 from grafic_matplotlib.core.forms import Calendar, UserChoice, ChoiceYear, ManualInput
 from grafic_matplotlib.models import Pie
 from grafic_matplotlib.figures import get_plot, get_bar_chart
 from grafic_matplotlib.analytics.query_data import amount_expenses, expenses_per_month
+from users.core.get_user import user_from_session_key
 
 
 def sum_transactions(u, s, e):
@@ -62,7 +65,7 @@ def index_p(request):
     if request.method == 'POST':
         form_cal = Calendar(request.POST)
         form_user = UserChoice(request.POST)
-        # form_manual_input = ManualInput(request.POST)
+        #form_manual_input = ManualInput(request.POST)
 
         if form_cal.is_valid() and form_user.is_valid():
             s = form_cal.cleaned_data['date_field_start']
@@ -135,3 +138,35 @@ def index_plan(request):
     return render(request, 'grafic_matplotlib/planning.html', {'sum_expenses': sum_transactions(u=None, s=None, e=None),
                                                                'amount_expenses': expenses_per_category(u=None, s=None, e=None),
                                                                'form_cal': form_cal, 'form_user': form_user})
+
+
+@login_required(login_url='/users/login/')
+def manual_input(request):
+    session_k = request.session.session_key
+    user = user_from_session_key(session_k)
+
+    if request.method == 'POST':
+        form_manual_input = ManualInput(request.POST)
+
+        if form_manual_input.is_valid():
+            trans_place = form_manual_input.cleaned_data['transaction_place']
+            type_expenses = form_manual_input.cleaned_data['type_expenses']
+            type_transaction = form_manual_input.cleaned_data['type_transaction']
+            sum_transaction = form_manual_input.cleaned_data['sum_trans']
+            date_of_trans = form_manual_input.cleaned_data['date_trans']
+            user = user
+            confirm = 'Данные успешно сохранены'
+            new_data = BankStatements(
+                transaction_place=trans_place,
+                type_expenses_id=type_expenses.id,
+                type_transaction_id=type_transaction.id,
+                sum_transaction=sum_transaction * -1
+                if type_transaction.id == 1 and sum_transaction > 0 else sum_transaction, # TODO не дать добавить -1 грн. для Зачисления
+                date_of_trans=date_of_trans, user=user)
+            new_data.save()
+
+            return render(request, 'grafic_matplotlib/success_input.html', {'confirm': confirm})
+
+    else:
+        form_manual_input = ManualInput(request.POST)
+        return render(request, 'grafic_matplotlib/manual_input.html', {'form_manual_input': form_manual_input})

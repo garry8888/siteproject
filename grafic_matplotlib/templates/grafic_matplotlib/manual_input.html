@@ -1,0 +1,18 @@
+{% extends "gsite/wrapper.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <head>
+        <meta charset="UTF-8">
+        <title>Manual Update</title>
+    </head>
+    <div class="col-lg-4" style="position: absolute; top: auto; right: 0; left: 0; margin: auto">
+        <div class="panel panel-default" >
+            <div class="panel-body">
+                <form action="" method="POST" style="width: 100%">
+                    {% csrf_token %}
+                    {{ form_manual_input|crispy }}
+                <button type="submit" class="btn btn-primary btn-block">Ok</button>
+                </form>
+            </div>
+        </div>
+{% endblock %}
