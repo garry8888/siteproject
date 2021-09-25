@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 
 # Календарь
-from finance.models import BankStatements
+from finance.models import BankStatements, TypeExpenses, MoneyTransaction
 
 
 class DateInput(forms.DateInput):
@@ -39,13 +39,14 @@ class UserChoice(forms.Form):
 
 # ручной ввод расходов
 class ManualInput(forms.Form):
-    query = BankStatements.objects.all()
-    transaction_place = forms.CharField(label='Место', widget=forms.TextInput)
-    type_expenses = forms.ModelMultipleChoiceField(label='Тип расходов',
-                                                   queryset=query,
-                                                   widget=forms.Select)
-    type_transaction = forms.ModelMultipleChoiceField(label='Тип транзакции',
-                                                      queryset=query, widget=forms.Select)
+    query_type_exp = TypeExpenses.objects.all()
+    query_type_trans = MoneyTransaction.objects.all()
+    transaction_place = forms.CharField(label='Место', widget=forms.TextInput(
+        attrs={'placeholder': 'For ex: Epicentr K, Lotok, Megogo'}))
+    sum_trans = forms.DecimalField(label='Сумма, грн.', widget=forms.NumberInput)
+    date_trans = forms.DateField(label='Дата', widget=DateInput)
+    type_expenses = forms.ModelChoiceField(label='Тип расходов', queryset=query_type_exp, widget=forms.Select)
+    type_transaction = forms.ModelChoiceField(label='Тип транзакции', queryset=query_type_trans, widget=forms.Select)
 
 
 # выбор года для гистограммы
