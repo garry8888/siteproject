@@ -7,7 +7,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 def check_last_update(user):  # проверка последней даты обновленной выписки
     try:
-        last_transaction = BankStatements.objects.filter(user=user).order_by('-date_of_trans')[0]
+        last_transaction = BankStatements.objects.filter(user=user, original__isnull=False).order_by('-date_of_trans')[0]
         exclude_duplicates = BankStatementsData.objects.filter(date_operation__gt=last_transaction.date_of_trans,
                                                                user=user)
     except IndexError:
