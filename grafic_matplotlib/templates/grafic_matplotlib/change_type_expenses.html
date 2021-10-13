@@ -1,0 +1,57 @@
+{% extends "gsite/wrapper.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <title>Change expenses</title>
+    <div class="panel panel-default">
+        <div class="panel-body" style="background: #00CED1">
+            <form method="POST" class="form-inline">
+                <div class="inline-block">
+                    {% csrf_token %}
+                    {{ form_cal|crispy }}
+                    {{ form_filter_exp|crispy }}
+                    {{ form_user|crispy }}
+                    {% load static %}
+                    <link rel="stylesheet" type="text/css" href="{% static 'grafic_matplotlib/button.css' %}">
+                    <button type="submit" class="btn btn-primary btn-inline">Ok</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <form id="button" method="POST">
+        <table id="t01" width="50%">
+            {% load static %}
+            <link rel="stylesheet" type="text/css" href="{% static 'grafic_matplotlib/table.css' %}">
+            <tr>
+                <th>ID</th>
+                <th>Информация</th>
+                <th>Сумма, грн.</th>
+                <th>Тип затрат</th>
+                <th>Ваш выбор</th>
+                <th>Дата</th>
+                <th>Пользователь</th>
+            </tr>
+                {% for data in query_expenses %}
+                <tr>
+                    <td>{{ data.id }}</td>
+                    <td>{{data.original.purpose}}</td>
+                    <td>{{data.sum_transaction}}</td>
+                    <td>{{ data.type_expenses.type_expenses_ru }}</td>
+                    <td>
+                        {% csrf_token %}
+                        <select name="new_type">
+                            <option value="0">--------------</option>
+                            {% for expenses in select_type_expenses %}
+                            <option name="expenses" value="{{ data.id }}-{{ expenses.id }}">{{ expenses.type_expenses_ru }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    <td>{{data.date_of_trans}}</td>
+                    <td>{{data.user.first_name}}</td>
+                </tr>
+                {% endfor %}
+        </table>
+    </form>
+    {% block javascript %}
+        <script src="{% static 'gsite/js/manual_update.js' %}"></script>
+    {% endblock javascript %}
+{% endblock %}

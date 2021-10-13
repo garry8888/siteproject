@@ -26,8 +26,8 @@ class CalendarModelForms(forms.Form):
 # выбор пользователя для отображения данных
 class UserInput(forms.CheckboxSelectMultiple):
     input_type = 'checkbox'
-    # template_name = 'django/forms/widgets/checkbox_select.html'
-    # option_template_name = 'django/forms/widgets/checkbox_option.html'
+    template_name = 'django/forms/widgets/checkbox_select.html'
+    option_template_name = 'django/forms/widgets/checkbox_option.html'
 
 
 class UserChoice(forms.Form):
@@ -62,3 +62,9 @@ class ChoiceYear(forms.Form):
         widget=YearInput,
         choices=years,
     )
+
+
+# фильтрация затрат по типу расходов
+class FilterExpenses(forms.Form):
+    query_type_exp = TypeExpenses.objects.all()
+    type_expenses = forms.ModelChoiceField(label='', queryset=query_type_exp, widget=forms.Select, required=True)
