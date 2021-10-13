@@ -233,5 +233,5 @@ def update_expenses(request):
                     bankstatement_data.type_expenses_id = int(new_data[1])
                     print(bankstatement_data)
                     bankstatement_data.save()
-        
+
         return JsonResponse({'message': 'Данные обновлены'}, status=200)
