@@ -43,7 +43,7 @@ def update_bank_statements_data(request):   # обновление данных 
                           {'form_url': form_url, 'confirmation': confirmation, 'confirm': confirm})
 
     else:
-        form_url = UrlInput(request.POST)
+        form_url = UrlInput()
 
     return render(request, 'factory/google_api_spreadsheet/update_bankstatements.html', {'form_url': form_url})
 
@@ -83,6 +83,6 @@ def update_bank_statements_data_pdf(request):
                           {'confirmation': confirmation, 'confirm': confirm})
 
     else:
-        form_pdf = PdfForm(request.POST)
+        form_pdf = PdfForm()
 
     return render(request, 'factory/pdf_update/update_pdf.html', {'form_pdf': form_pdf})

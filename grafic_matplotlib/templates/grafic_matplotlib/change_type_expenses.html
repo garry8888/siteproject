@@ -9,7 +9,6 @@
                     {% csrf_token %}
                     {{ form_cal|crispy }}
                     {{ form_filter_exp|crispy }}
-                    {{ form_user|crispy }}
                     {% load static %}
                     <link rel="stylesheet" type="text/css" href="{% static 'grafic_matplotlib/button.css' %}">
                     <button type="submit" class="btn btn-primary btn-inline">Ok</button>

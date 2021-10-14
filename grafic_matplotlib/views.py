@@ -182,29 +182,29 @@ def get_expenses_list(request):
     if request.method == 'POST':
         try:
             form_cal = Calendar(request.POST)
-            form_user = UserChoice(request.POST)
+            # form_user = UserChoice(request.POST)
             form_filter_exp = FilterExpenses(request.POST)
-            if form_cal.is_valid() and form_user.is_valid() and form_filter_exp.is_valid():
+            if form_cal.is_valid() and form_filter_exp.is_valid():
                 start_date = form_cal.cleaned_data['date_field_start']
                 end_date = form_cal.cleaned_data['date_field_end']
-                choice_user = [i.id for i in form_user.cleaned_data['user_field']]
+                # choice_user = [i.id for i in form_user.cleaned_data['user_field']]
                 type_expenses = form_filter_exp.cleaned_data['type_expenses']
-                query_expenses = BankStatements.objects.filter(user_id__in=choice_user, type_expenses=type_expenses.id,
+                query_expenses = BankStatements.objects.filter(user_id=user, type_expenses=type_expenses.id,
                                                                type_transaction_id=1,
                                                                date_of_trans__range=[start_date, end_date])
 
                 return render(request, 'grafic_matplotlib/change_type_expenses.html',
-                              {'form_cal': form_cal, 'form_filter_exp': form_filter_exp, 'form_user': form_user,
+                              {'form_cal': form_cal, 'form_filter_exp': form_filter_exp,
                                'query_expenses': query_expenses, 'select_type_expenses': select_type_expenses})
 
         except ObjectDoesNotExist:
             return render(request, 'grafic_matplotlib/analytics.html')
 
     else:
-        form_cal = Calendar(request.POST)
-        form_user = UserChoice(request.POST)
-        form_filter_exp = FilterExpenses(request.POST)
-        query_expenses = BankStatements.objects.filter(user_id__in=[1, 2], type_expenses=12, type_transaction_id=1,
+        form_cal = Calendar()
+        form_user = UserChoice()
+        form_filter_exp = FilterExpenses()
+        query_expenses = BankStatements.objects.filter(user_id=user, type_expenses=12, type_transaction_id=1,
                                                        date_of_trans__range=[start_date, end_date])
 
         return render(request, 'grafic_matplotlib/change_type_expenses.html',
