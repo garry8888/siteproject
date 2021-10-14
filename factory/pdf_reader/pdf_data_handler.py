@@ -22,6 +22,7 @@ def check_last_update(new_data):
 
 def load_bank_statement(pdf_file, user_id):
     new_data = get_pdf_data(pdf_file)
+    print('load', new_data)
 
     if new_data == 'Incorrect format':
         return 0

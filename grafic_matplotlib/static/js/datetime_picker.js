@@ -3,7 +3,7 @@
         // инициализация datetimepicker7 и datetimepicker8
         $("#datetimepicker7").datetimepicker();
         $("#datetimepicker8").datetimepicker({
-            useCurrent: false
+            useCurrent: true
         });
         $("#datetimepicker7").on("dp.change", function (e) {
             $('#datetimepicker8').data("DateTimePicker").minDate(e.date);

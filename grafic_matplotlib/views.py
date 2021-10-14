@@ -1,11 +1,11 @@
 import calendar
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import JsonResponse
 from django.shortcuts import render
 
-from finance.models import BankStatements, MoneyTransaction, TypeExpenses
-from grafic_matplotlib.core.forms import Calendar, UserChoice, ChoiceYear, ManualInput
-from grafic_matplotlib.models import Pie
+from finance.models import BankStatements, TypeExpenses
+from grafic_matplotlib.core.forms import Calendar, UserChoice, ChoiceYear, ManualInput, FilterExpenses
 from grafic_matplotlib.figures import get_plot, get_bar_chart
 from grafic_matplotlib.analytics.query_data import amount_expenses, expenses_per_month
 from users.core.get_user import user_from_session_key
@@ -65,7 +65,6 @@ def index_p(request):
     if request.method == 'POST':
         form_cal = Calendar(request.POST)
         form_user = UserChoice(request.POST)
-        #form_manual_input = ManualInput(request.POST)
 
         if form_cal.is_valid() and form_user.is_valid():
             s = form_cal.cleaned_data['date_field_start']
@@ -73,21 +72,20 @@ def index_p(request):
             choice_user = [i.id for i in form_user.cleaned_data['user_field']]
             data_update = expenses_per_category(choice_user, s, e)
             pie_update = get_plot(choice_user, s, e)
+
             return render(request, 'grafic_matplotlib/pie.html', {'pie_fig': pie_update,
                                                                   'sum_expenses': sum_transactions(u=choice_user, s=s, e=e),
                                                                   'amount_expenses': data_update, 'form_cal': form_cal,
                                                                   'form_user': form_user})
-                                                                  # 'form_manual_input': form_manual_input})
 
     else:
         form_cal = Calendar()
         form_user = UserChoice()
-        # form_manual_input = ManualInput(request.POST)
+
     return render(request, 'grafic_matplotlib/pie.html', {'pie_fig': pie_update,
                                                           'sum_expenses': sum_transactions(u=None, s=None, e=None),
                                                           'amount_expenses': expenses_per_category(u=None, s=None, e=None),
                                                           'form_cal': form_cal, 'form_user': form_user})
-                                                          # 'form_manual_input': form_manual_input})
 
 
 @login_required(login_url='/users/login/')
@@ -140,6 +138,7 @@ def index_plan(request):
                                                                'form_cal': form_cal, 'form_user': form_user})
 
 
+# ручное создание транзакции/зачисления
 @login_required(login_url='/users/login/')
 def manual_input(request):
     session_k = request.session.session_key
@@ -170,3 +169,69 @@ def manual_input(request):
     else:
         form_manual_input = ManualInput(request.POST)
         return render(request, 'grafic_matplotlib/manual_input.html', {'form_manual_input': form_manual_input})
+
+
+# редактирование текущей записи о транзакции (тип расходов)
+@login_required(login_url='/users/login/')
+def get_expenses_list(request):
+    session_k = request.session.session_key
+    user = user_from_session_key(session_k)
+    start_date = '2021-08-01'
+    end_date = '2021-08-31'
+    select_type_expenses = TypeExpenses.objects.all()
+    if request.method == 'POST':
+        try:
+            form_cal = Calendar(request.POST)
+            # form_user = UserChoice(request.POST)
+            form_filter_exp = FilterExpenses(request.POST)
+            if form_cal.is_valid() and form_filter_exp.is_valid():
+                start_date = form_cal.cleaned_data['date_field_start']
+                end_date = form_cal.cleaned_data['date_field_end']
+                # choice_user = [i.id for i in form_user.cleaned_data['user_field']]
+                type_expenses = form_filter_exp.cleaned_data['type_expenses']
+                query_expenses = BankStatements.objects.filter(user_id=user, type_expenses=type_expenses.id,
+                                                               type_transaction_id=1,
+                                                               date_of_trans__range=[start_date, end_date])
+
+                return render(request, 'grafic_matplotlib/change_type_expenses.html',
+                              {'form_cal': form_cal, 'form_filter_exp': form_filter_exp,
+                               'query_expenses': query_expenses, 'select_type_expenses': select_type_expenses})
+
+        except ObjectDoesNotExist:
+            return render(request, 'grafic_matplotlib/analytics.html')
+
+    else:
+        form_cal = Calendar()
+        form_user = UserChoice()
+        form_filter_exp = FilterExpenses()
+        query_expenses = BankStatements.objects.filter(user_id=user, type_expenses=12, type_transaction_id=1,
+                                                       date_of_trans__range=[start_date, end_date])
+
+        return render(request, 'grafic_matplotlib/change_type_expenses.html',
+                      {'form_cal': form_cal, 'form_filter_exp': form_filter_exp,
+                       'form_user': form_user, 'query_expenses': query_expenses,
+                       'select_type_expenses': select_type_expenses})
+
+
+@login_required(login_url='/users/login/')
+def update_expenses(request):
+    if request.method == 'POST' and request.is_ajax:
+        requested_data = request.POST
+        new_type_expenses = requested_data.getlist('new_type')
+        print(new_type_expenses)
+
+        for type_expenses in new_type_expenses:
+
+            if len(type_expenses.split('-')) > 1:  # проверяем, чтоб список не был ['0']
+                print(type_expenses.split('-'))
+                new_data = type_expenses.split('-')
+                bankstatement_data = BankStatements.objects.get(id=int(new_data[0]))
+                print(bankstatement_data)
+
+                # проверяем, чтоб тип затрат отличался от полученного и обновляем
+                if int(new_data[1]) != bankstatement_data.type_expenses_id:
+                    bankstatement_data.type_expenses_id = int(new_data[1])
+                    print(bankstatement_data)
+                    bankstatement_data.save()
+
+        return JsonResponse({'message': 'Данные обновлены'}, status=200)
