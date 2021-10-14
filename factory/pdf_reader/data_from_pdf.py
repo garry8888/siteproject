@@ -9,6 +9,7 @@ def get_pdf_data(pdf_file):
 
         for table in tables:
             list_data.append(table.data)
+            print(list_data)
 
         for data in list_data:
             try:
