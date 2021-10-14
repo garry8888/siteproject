@@ -9,18 +9,23 @@ def get_pdf_data(pdf_file):
 
         for table in tables:
             list_data.append(table.data)
-            print(list_data)
 
+        # удаляем лишние заголовки документа и ищем начало тела таблицы
         for data in list_data:
             try:
-                while data[0][0] != 'Дата та час' or data[0][4] == 'null':
-                    print(data[0])
-                    del data[0]
+                len_data = len(data[0])
+
+                while len(data) != 0:
+                    if data[0][0] != 'Дата та час' or data[0][len_data - 1] == 'null':
+                        del data[0]
+                    else:
+                        break
                 else:
-                    break
+                    continue
+
             except IndexError:
                 return 'Incorrect format'
-
         return list_data
+
     except NotImplementedError:
         return 'Incorrect format'
