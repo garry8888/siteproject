@@ -56,7 +56,7 @@ def load_bank_statement(pdf_file, user_id):
         count = 1
         while count < len_data:
             try:
-                if i[count][2] == i[count][1] == '':  # delete trash data (['00:00:00', '', '', 'MCC 6012)', ''])
+                if i[count][2] == i[count][1] == '' or i[count][4] == i[count][3] == '':  # delete trash data (['00:00:00', '', '', 'MCC 6012)', '']) or (['ВСЬОГО:', '25 000,00', '27 507,20', '', ''])
                     # print('------- del data:', i[count])
                     del i[count]
                 else:
