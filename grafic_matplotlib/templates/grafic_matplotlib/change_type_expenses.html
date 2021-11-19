@@ -33,7 +33,13 @@
                         {% for data in query_expenses %}
                         <tr>
                             <td>{{ data.id }}</td>
-                            <td>{{data.original.purpose}}</td>
+                            <td>
+                                {% if data.original.purpose is None %}
+                                {{data.transaction_place}}
+                                {% else %}
+                                {{data.original.purpose}}
+                                {% endif %}
+                            </td>
                             <td>{{data.sum_transaction}}</td>
                             <td>{{ data.type_expenses.type_expenses_ru }}</td>
                             <td>
