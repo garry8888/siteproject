@@ -3,15 +3,11 @@ from factory.models import BankStatementsData, Mcc
 from django.core.exceptions import ObjectDoesNotExist
 import json
 import requests
+from gsite.settings.env import env
 
 
-# api_spreadsheets gsx2json
-#TODO оптимизировать код, убрать повторяющиеся path
-
-# parse spreadsheets data
-
-
-def json_get(path='http://gsx2json.com/api?id=1BRDrKF9anTLPBBN5e3n_g2S0FTiiCFfPG5UuD2cnuPQ&sheet=4'):
+# api_spreadsheets gsx2json parse spreadsheets data
+def json_get(path=env.str('URL')):
     response = requests.get(path)
     data_spreadsheet = json.loads(response.text)
     data_db = data_spreadsheet['rows']
@@ -50,7 +46,7 @@ def append_country(func=json_get()):
 
 
 # create TypeExpenses catalogue in the model TypeExpenses
-def create_expenses(path='http://gsx2json.com/api?id=1BRDrKF9anTLPBBN5e3n_g2S0FTiiCFfPG5UuD2cnuPQ&sheet=3'):
+def create_expenses(path=env.str('URL')):
     response = requests.get(path)
     data_spreadsheet = json.loads(response.text)
     data_db = data_spreadsheet['rows']
@@ -66,7 +62,7 @@ def create_expenses(path='http://gsx2json.com/api?id=1BRDrKF9anTLPBBN5e3n_g2S0FT
 
 
 # create MCC catalogue in the model Mcc
-def create_mcc(path='http://gsx2json.com/api?id=1BRDrKF9anTLPBBN5e3n_g2S0FTiiCFfPG5UuD2cnuPQ&sheet=5'):
+def create_mcc(path=env.str('URL')):
     response = requests.get(path)
     data_spreadsheet = json.loads(response.text)
     data_db = data_spreadsheet['rows']
