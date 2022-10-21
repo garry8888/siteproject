@@ -27,10 +27,10 @@ def check_last_update_spreadsheet(new_data):  # проверка последн�
     return exclude_duplicates
 
 
-# create BankStatements list in the model BankStatementsData path='http://gsx2json.com/api?id=1t3iHjR_pPDyV3PL4MyIxX287NqsyiiaBMWogQ9JEh00&sheet=2'
+# create BankStatements list in the model BankStatementsData
 def load_bank_statements_data(url, sheet_numb, user_id):
     try:
-        uri = url.split('/')  # ['https:', '', 'docs.google.com', 'spreadsheets', 'd', '1t3iHjR_pPDyV3PL4MyIxX287NqsyiiaBMWogQ9JEh00', 'edit#gid=885799634']
+        uri = url.split('/')
 
         path = 'http://gsx2json.com/api?id=%s&sheet=%s' % (uri[5], sheet_numb)
 
