@@ -1,4 +1,4 @@
-.env
+gsite/settings/.env
 .venv
 .idea/
 /.idea/
@@ -7,3 +7,5 @@ static
 *.xml
 media/
 .settings
+__pycache__/
+.DS_Store
