@@ -1,9 +1,8 @@
 import os
 import environ
 
-ROOT = environ.Path(__file__) - 2
-
-env_file = os.path.join(ROOT, '.env')
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 env = environ.Env()
-environ.Env.read_env(env_file)
+# reading .env file
+env.read_env()
