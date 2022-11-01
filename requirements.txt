@@ -1,13 +1,13 @@
 Django==3.0.5
 django-environ==0.4.5
 django-modeltranslation==0.15.1
-psycopg2-binary==2.8.5
 django-silk==4.0.1
 rollbar==0.15.0
-matplotlib==3.3.2
+matplotlib==3.6.1
 django-matplotlib==0.1
 django-crispy-forms==1.11.0
 django-bootstrap4==2.3.1
 ghostscript==0.7
 camelot-py==0.10.1
-opencv-python==4.5.3.56
+opencv-python==4.6.0.66
+environ==1.0
