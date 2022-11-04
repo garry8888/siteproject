@@ -1,11 +1,11 @@
-from datetime import datetime, date
+from datetime import datetime
 from decimal import Decimal, InvalidOperation, DecimalException
 from django.core.exceptions import ObjectDoesNotExist
 from factory.models import BankStatementsData
-from factory.pdf_reader.data_from_pdf import get_pdf_data
+from factory.pdf_reader.data_from_pdf import alfa_bank_delete_headers, get_pdf_data
 
 
-# исключение дублей, проверка последней даты обновленной выписки
+# Alfa-bank: elimination of duplicates, checking the last date of the updated statement
 def check_last_update(new_data):
     data = new_data[0]
     new_date = data['date_operation']
@@ -21,8 +21,9 @@ def check_last_update(new_data):
 
 
 def load_bank_statement(pdf_file, user_id):
-    new_data = get_pdf_data(pdf_file)
-    print('load', new_data)
+    new_rough_data = get_pdf_data(pdf_file)
+    print('load', new_rough_data)
+    new_data = alfa_bank_delete_headers(new_rough_data)
 
     if new_data == 'Incorrect format':
         return 0
@@ -56,19 +57,20 @@ def load_bank_statement(pdf_file, user_id):
         count = 1
         while count < len_data:
             try:
-                if i[count][2] == i[count][1] == '' or i[count][4] == i[count][3] == '':  # delete trash data (['00:00:00', '', '', 'MCC 6012)', '']) or (['ВСЬОГО:', '25 000,00', '27 507,20', '', ''])
-                    # print('------- del data:', i[count])
+                # delete trash data (['00:00:00', '', '', 'MCC 6012)', '']) or (['ВСЬОГО:', '25 000,00', '27 507,20', '', ''])
+                if i[count][2] == i[count][1] == '' or i[count][4] == i[count][3] == '':
                     del i[count]
+
                 else:
-                    # print('------- list:', i[count])
-                    # print('-------- date:', i[count][0])
                     d.append(dict(
                         purpose=i[count][3].replace('\n', ' '),
-                        amount=numbers(i[count][2] if i[count][2] != '' else i[count][1] if i[count][1] != '' else 1),  # если Витрати -'' и 'Надходження' '', ставим 1
-                        date_operation=datetime.strptime(i[count][0].split()[0], "%d.%m.%Y"),  # datetime.strptime(i[count][0].split()[0], "%d.%m.%Y").date()  i[count][0].split()[0]
+                        # if in data from bank statement Витрати -'' и 'Надходження' '', set 1
+                        amount=numbers(i[count][2] if i[count][2] != '' else i[count][1] if i[count][1] != '' else 1),
+                        date_operation=datetime.strptime(i[count][0].split()[0], "%d.%m.%Y"),
                         user_id=user_id
                     ))
                     count += 1
+
             except IndexError:
                 break
         else:
