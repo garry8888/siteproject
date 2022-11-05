@@ -44,6 +44,14 @@ class MoneyTransaction(models.Model):
         return f'{self.id} - {self.type_transaction_ru}'
 
 
+class Bank(models.Model):
+    bank_short_name = models.CharField(max_length=50)
+    bank_full_name = models.CharField(max_length=100)
+    country = models.ForeignKey(Countries, on_delete=models.CASCADE)
+    is_active = models.BooleanField(default=True)
+    date_updated = models.DateTimeField(auto_now=True)
+
+
 class BankStatements(models.Model):
     transaction_place = models.CharField(max_length=200)
     type_expenses = models.ForeignKey(TypeExpenses, on_delete=models.CASCADE, null=True)
@@ -55,14 +63,7 @@ class BankStatements(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     original = models.ForeignKey(BankStatementsData, on_delete=models.CASCADE, null=True)
+    bank = models.ForeignKey(Bank, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return f'{self.id} - {self.transaction_place} - {self.sum_transaction} - {self.type_expenses} - {self.user}'
-
-
-class Bank(models.Model):
-    bank_short_name = models.CharField(max_length=50)
-    bank_full_name = models.CharField(max_length=100)
-    country = models.ForeignKey(Countries, on_delete=models.CASCADE)
-    is_active = models.BooleanField(default=True)
-    date_updated = models.DateTimeField(auto_now=True)
