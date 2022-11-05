@@ -37,3 +37,13 @@ def alfa_bank_delete_headers(pdf_data):
 
     return rough_pdf_data
 
+
+# BNP Paribas bank: remove unnecessary document headers/footers and look for the beginning of the table body
+def bnp_paribas_delete_headers(pdf_data):
+    rough_pdf_data = pdf_data[1:-1]
+    finance_data = []
+
+    for data in rough_pdf_data:
+        finance_data.append(data[1:])
+
+    return rough_pdf_data
