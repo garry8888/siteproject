@@ -1,11 +1,11 @@
 from django.contrib.auth.models import User
-
 from factory.models import BankStatementsData, Mcc
 from finance.models import Countries, MoneyTransaction, BankStatements
 from django.core.exceptions import ObjectDoesNotExist
 
 
-def check_last_update(user):  # проверка последней даты обновленной выписки
+# checking the latest date of the uploaded statement in the DB for current user
+def check_last_update(user):
     try:
         last_transaction = BankStatements.objects.filter(user=user, original__isnull=False).order_by('-date_of_trans')[0]
         exclude_duplicates = BankStatementsData.objects.filter(date_operation__gt=last_transaction.date_of_trans,
