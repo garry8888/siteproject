@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 
-from factory.models import BankStatementsData
+from factory.models import BankStatementsData, Mcc
 
 
 class Currency(models.Model):
@@ -67,3 +67,10 @@ class BankStatements(models.Model):
 
     def __str__(self):
         return f'{self.id} - {self.transaction_place} - {self.sum_transaction} - {self.type_expenses} - {self.user}'
+
+
+class Merchant(models.Model):
+    name = models.CharField(max_length=200)
+    short_name = models.CharField(max_length=20, null=True)
+    type_expenses = models.ForeignKey(TypeExpenses, on_delete=models.CASCADE, null=True)
+    mcc_code = models.ForeignKey(Mcc, on_delete=models.CASCADE, null=True)
