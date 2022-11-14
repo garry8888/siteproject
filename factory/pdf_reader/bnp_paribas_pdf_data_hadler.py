@@ -29,7 +29,6 @@ def get_amount(new_pdf_data):
     except InvalidOperation:
         decimal_amount = Decimal(amount.replace('\xa0', ''))
 
-    print(decimal_amount)
     return decimal_amount
 
 
@@ -46,7 +45,7 @@ def bnp_paribas_load_bank_statement(pdf_file, user_id=1, bank=2):
         uploading_data.append(dict(
             purpose=get_purpose(item),
             amount=get_amount(item),
-            date_operation=datetime.strptime(item[0][1], "%d.%m.%Y"),
+            date_operation=datetime.date(datetime.strptime(item[0][1], "%d.%m.%Y")),
             user_id=user_id,
             bank_id=bank
         ))
