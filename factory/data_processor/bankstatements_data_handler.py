@@ -1,4 +1,3 @@
-from django.contrib.auth.models import User
 from factory.models import BankStatementsData, Mcc
 from finance.models import Countries, MoneyTransaction, BankStatements
 from django.core.exceptions import ObjectDoesNotExist
