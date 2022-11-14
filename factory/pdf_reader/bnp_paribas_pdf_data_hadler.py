@@ -1,6 +1,10 @@
+from factory.models import BankStatementsData
 from factory.pdf_reader.data_from_pdf import get_pdf_data, bnp_paribas_delete_headers
 from decimal import Decimal, InvalidOperation
 from datetime import datetime
+
+from factory.pdf_reader.pdf_data_handler import check_last_update
+
 
 # BNP Paribas bank: uploading rough finance data from pdf payslip
 
@@ -45,9 +49,19 @@ def bnp_paribas_load_bank_statement(pdf_file, user_id=1, bank=2):
         uploading_data.append(dict(
             purpose=get_purpose(item),
             amount=get_amount(item),
-            date_operation=datetime.date(datetime.strptime(item[0][1], "%d.%m.%Y")),
+            date_operation=datetime.strptime(item[0][1], "%d.%m.%Y"),
             user_id=user_id,
             bank_id=bank
         ))
+
+    # TODO create separate function "uploading_data"
+    find_duplicates = check_last_update(uploading_data)
+
+    if find_duplicates == 0:
+        BankStatementsData.objects.bulk_create([BankStatementsData(**r) for r in uploading_data])
+        print('LOAD')
+    else:
+        print('NOT LOAD')
+        return 1
 
     return uploading_data
