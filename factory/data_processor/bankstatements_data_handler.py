@@ -103,7 +103,6 @@ def create_bank_statements(user_id, bank_id):
                 ))
 
         else:
-            # print('----STRING 83', purpose)
             mcc_d.append(dict(
                 transaction_place=purpose,
                 type_expenses_id=12,
