@@ -42,11 +42,8 @@ def load_bank_statement(pdf_file, user_id, bank=1):
                 num = 0
                 return num
         except InvalidOperation or DecimalException:
-            print(num)
             nums_l = num.split('\n')
-            print(nums_l)
             num_r = nums_l[0].replace(' ', '').replace(',', '.')
-            print(num_r)
             nums = Decimal(num_r)
             return nums
 
