@@ -11,16 +11,17 @@ def check_last_update(new_data):
     new_date = data['date_operation']
     new_amount = data['amount']
     user = data['user_id']
+    bank = data['bank_id']
     try:
         exclude_duplicates = BankStatementsData.objects.\
-            get(date_operation=new_date.date(), user=user, amount=new_amount)
+            get(date_operation=new_date.date(), user=user, amount=new_amount, bank=bank)
     except ObjectDoesNotExist:
         exclude_duplicates = 0
 
     return exclude_duplicates
 
 
-def load_bank_statement(pdf_file, user_id):
+def load_bank_statement(pdf_file, user_id, bank=1):
     new_rough_data = get_pdf_data(pdf_file)
     print('load', new_rough_data)
     new_data = alfa_bank_delete_headers(new_rough_data)
@@ -67,7 +68,8 @@ def load_bank_statement(pdf_file, user_id):
                         # if in data from bank statement Витрати -'' и 'Надходження' '', set 1
                         amount=numbers(i[count][2] if i[count][2] != '' else i[count][1] if i[count][1] != '' else 1),
                         date_operation=datetime.strptime(i[count][0].split()[0], "%d.%m.%Y"),
-                        user_id=user_id
+                        user_id=user_id,
+                        bank_id=bank
                     ))
                     count += 1
 

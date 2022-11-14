@@ -5,19 +5,20 @@ from django.core.exceptions import ObjectDoesNotExist
 
 
 # checking the latest date of the uploaded statement in the DB for current user
-def check_last_update(user):
+def check_last_update(user, bank):
     try:
-        last_transaction = BankStatements.objects.filter(user=user, original__isnull=False).order_by('-date_of_trans')[0]
+        last_transaction = BankStatements.objects.filter(user=user, bank=bank, original__isnull=False).\
+            order_by('-date_of_trans')[0]
         exclude_duplicates = BankStatementsData.objects.filter(date_operation__gt=last_transaction.date_of_trans,
-                                                               user=user)
+                                                               user=user, bank=bank)
     except IndexError:
-        exclude_duplicates = BankStatementsData.objects.filter(user=user)
+        exclude_duplicates = BankStatementsData.objects.filter(user=user, bank=bank)
 
     return exclude_duplicates
 
 
-def create_bank_statements(user_id):
-    data = check_last_update(user_id)
+def create_bank_statements(user_id, bank_id):
+    data = check_last_update(user_id, bank_id)
     mcc_d = []
 
     def amount_transaction(transaction_sum):
@@ -82,6 +83,7 @@ def create_bank_statements(user_id):
                     country_id=country(transaction[2].lstrip()),
                     date_of_trans=row.date_operation,
                     user_id=user_id,
+                    bank_id=bank_id,
                     original_id=row.id
                 ))
 
@@ -96,6 +98,7 @@ def create_bank_statements(user_id):
                     country_id=country(transaction[2].lstrip()),
                     date_of_trans=row.date_operation,
                     user_id=user_id,
+                    bank_id=bank_id,
                     original_id=row.id
                 ))
 
@@ -110,6 +113,7 @@ def create_bank_statements(user_id):
                 country_id=None,
                 date_of_trans=row.date_operation,
                 user_id=user_id,
+                bank_id=bank_id,
                 original_id=row.id
             ))
 

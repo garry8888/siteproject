@@ -61,7 +61,10 @@ def update_bank_statements_data_pdf(request):
 
         if form_pdf.is_valid():
             form_pdf.save()
-            update_bankstatementsdata = load_bank_statement(pdf_file="%s/%s" % (MEDIA_ROOT, str(file)), user_id=user.id)
+            update_bankstatementsdata = load_bank_statement(
+                pdf_file="%s/%s" % (MEDIA_ROOT, str(file)),
+                user_id=user.id
+            )
 
             if update_bankstatementsdata == 0:
                 confirmation = 'Формат файла не поддерживается'
