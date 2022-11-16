@@ -5,13 +5,15 @@ from django.shortcuts import render
 from factory.api_spreadsheets.handler import load_bank_statements_data
 from factory.data_processor.bankstatements_data_handler import create_bank_statements
 from factory.forms import UrlInput, PdfForm
+from factory.pdf_reader.bnp_paribas_pdf_data_hadler import bnp_paribas_load_bank_statement
 from factory.pdf_reader.pdf_data_handler import load_bank_statement
 from gsite.settings import MEDIA_ROOT
 from users.core.get_user import user_from_session_key
 
 
+# uploading bank statement data from google spreadsheet
 @login_required(login_url='/users/login/')
-def update_bank_statements_data(request):   # обновление данных по банковской выписке BankStatementsData
+def update_bank_statements_data(request):
     session_k = request.session.session_key
     user = user_from_session_key(session_k)
 
@@ -48,7 +50,7 @@ def update_bank_statements_data(request):   # обновление данных 
     return render(request, 'factory/google_api_spreadsheet/update_bankstatements.html', {'form_url': form_url})
 
 
-# обновление данных из PDF выписки
+# uploading data from PDF bank statement
 @login_required(login_url='/users/login/')
 def update_bank_statements_data_pdf(request):
     session_k = request.session.session_key
@@ -57,14 +59,26 @@ def update_bank_statements_data_pdf(request):
     if request.method == 'POST':
         form_pdf = PdfForm(request.POST, request.FILES)
         file = request.FILES['document']
-        print(type(file))
 
         if form_pdf.is_valid():
+            bank = form_pdf.cleaned_data['bank']
             form_pdf.save()
-            update_bankstatementsdata = load_bank_statement(
-                pdf_file="%s/%s" % (MEDIA_ROOT, str(file)),
-                user_id=user.id
-            )
+
+            # load Alfa-Bank bank statement
+            if bank.bank_short_name == 'Alfa-Bank':
+                update_bankstatementsdata = load_bank_statement(
+                    pdf_file="%s/%s" % (MEDIA_ROOT, str(file)),
+                    user_id=user.id,
+                    bank=bank.id
+                )
+
+            # load BNP Paribas Bank bank statement
+            if bank.bank_short_name == 'BNP Paribas':
+                update_bankstatementsdata = bnp_paribas_load_bank_statement(
+                    pdf_file="%s/%s" % (MEDIA_ROOT, str(file)),
+                    user_id=user.id,
+                    bank=bank.id
+                )
 
             if update_bankstatementsdata == 0:
                 confirmation = 'Формат файла не поддерживается'

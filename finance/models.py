@@ -51,6 +51,9 @@ class Bank(models.Model):
     is_active = models.BooleanField(default=True)
     date_updated = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return f'{self.id} - {self.bank_full_name}'
+
 
 class BankStatements(models.Model):
     transaction_place = models.CharField(max_length=200)

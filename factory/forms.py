@@ -5,6 +5,7 @@ from django import forms
 from django.forms import ModelForm
 
 from factory.models import Document
+from finance.models import Bank
 
 
 class UrlForm(forms.URLInput):
@@ -24,7 +25,7 @@ class UrlInput(forms.Form):
 class PdfForm(ModelForm):
     class Meta:
         model = Document
-        fields = ('description', 'document', )
+        fields = ('bank', 'description', 'document', )
 
 
 """

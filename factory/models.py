@@ -32,6 +32,7 @@ class CatalogPlacesExpenses(models.Model):
 
 
 class Document(models.Model):
+    bank = models.ForeignKey('finance.Bank', on_delete=models.CASCADE)
     description = models.CharField(max_length=255, blank=False)
     document = models.FileField(blank=False)
     uploaded_at = models.DateTimeField(auto_now_add=True)
