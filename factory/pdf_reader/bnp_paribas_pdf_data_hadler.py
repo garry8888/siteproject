@@ -37,7 +37,7 @@ def get_amount(new_pdf_data):
 
 
 # upload rough finance data from pdf payslip
-def bnp_paribas_load_bank_statement(pdf_file, user_id=1, bank=2):
+def bnp_paribas_load_bank_statement(pdf_file, user_id=1, bank):
     new_rough_data = get_pdf_data(pdf_file)
     new_data = bnp_paribas_delete_headers(new_rough_data)
 

@@ -21,7 +21,7 @@ def check_last_update(new_data):
     return exclude_duplicates
 
 
-def load_bank_statement(pdf_file, user_id, bank=1):
+def load_bank_statement(pdf_file, user_id, bank):
     new_rough_data = get_pdf_data(pdf_file)
     new_data = alfa_bank_delete_headers(new_rough_data)
 
