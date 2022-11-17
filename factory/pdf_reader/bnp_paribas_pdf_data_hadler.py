@@ -11,7 +11,8 @@ from factory.pdf_reader.pdf_data_handler import check_last_update
 
 # get rough transaction details(description) for uploading
 def get_purpose(new_pdf_data):
-    purpose = []
+    raw_purpose = []
+    purpose = ''
     rough_transaction_details = [i[2].replace('\n', ' ').split('  ') for i in new_pdf_data]
     rough_transaction_details[1].pop(0)
 
@@ -19,7 +20,22 @@ def get_purpose(new_pdf_data):
 
     for item in transaction_details:
         if item != '':
-            purpose.append(item)
+            raw_purpose.append(item)
+
+    len_raw_purpose = len(raw_purpose) - 1
+
+    if 0 < len_raw_purpose < 3:
+        del_city = raw_purpose[len_raw_purpose - 1].lstrip().split(' ')
+        del del_city[0]
+        purpose = ' '.join(del_city) + ' ' + raw_purpose[len_raw_purpose]
+
+    if len_raw_purpose >= 3:
+        del_city = raw_purpose[len_raw_purpose - 2].lstrip().split(' ')
+        del del_city[0]
+        purpose = ' '.join(del_city) + ' ' + raw_purpose[len_raw_purpose]
+
+    if len_raw_purpose == 0:
+        purpose = ' '.join(raw_purpose)
 
     return purpose
 
