@@ -1,9 +1,9 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 from factory.api_spreadsheets.handler import load_bank_statements_data
-from factory.data_processor.bankstatements_data_handler import create_bank_statements
+from factory.data_processor.bankstatements_data_handler import create_bank_statements, \
+    bnp_paribas_upload_clear_financial_data
 from factory.forms import UrlInput, PdfForm
 from factory.pdf_reader.bnp_paribas_pdf_data_hadler import bnp_paribas_load_bank_statement
 from factory.pdf_reader.pdf_data_handler import load_bank_statement
@@ -90,7 +90,12 @@ def update_bank_statements_data_pdf(request):
                 confirmation = 'Информация загружена.'
 
                 try:
-                    update_bankstatements = create_bank_statements(user_id=user.id)
+                    if bank.bank_short_name == 'Alfa-Bank':
+                        update_bankstatements = create_bank_statements(user_id=user.id, bank_id=bank.id)
+
+                    if bank.bank_short_name == 'BNP Paribas':
+                        update_bankstatements = bnp_paribas_upload_clear_financial_data(user_id=user.id, bank_id=bank.id)
+
                     confirm = 'Выписка обновлена'
 
                 except Exception:
