@@ -1,13 +1,13 @@
+import csv
 from json import JSONDecodeError
-
-from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
-
-from factory.models import BankStatementsData
+from factory.models import BankStatementsData, Mcc
 import json
 import requests
-from datetime import datetime, date
+from datetime import datetime
 from decimal import *
+from finance.models import Merchant
+
 
 # api_spreadsheets gsx2json
 
@@ -67,3 +67,41 @@ def load_bank_statements_data(url, sheet_numb, user_id):
             return 1
     except TypeError or JSONDecodeError:
         return 0
+
+
+# upload merchant data from csv
+def csv_reader_merchants(file):
+    csv_file = file
+    merchant_list = []
+    with open(csv_file, newline='') as f_obj:
+        reader = csv.reader(f_obj, delimiter=";")
+        for row in reader:
+            merchant_list.append(row)
+
+    return merchant_list
+
+
+def create_merchant(data):
+    merch = []
+    upload_data = []
+    for item in data:
+        merch.append(item[0].split(','))
+
+    for i in merch[2:]:
+        a = ''
+        try:
+            upload_data.append(dict(
+                name=i[1],
+                short_name=a.join(i[1].lower()).replace(' ', ''),
+                type_expenses_id=None,
+                mcc_code_id=Mcc.objects.get(mcc=i[0]).id
+            ))
+        except ObjectDoesNotExist:
+            upload_data.append(dict(
+                name=i[1],
+                short_name=a.join(i[1].lower()).replace(' ', ''),
+                type_expenses_id=12,
+                mcc_code_id=None
+            ))
+
+    Merchant.objects.bulk_create([Merchant(**r) for r in upload_data])

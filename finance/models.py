@@ -74,6 +74,6 @@ class BankStatements(models.Model):
 
 class Merchant(models.Model):
     name = models.CharField(max_length=200)
-    short_name = models.CharField(max_length=20, null=True)
+    short_name = models.CharField(max_length=200, null=True)
     type_expenses = models.ForeignKey(TypeExpenses, on_delete=models.CASCADE, null=True)
     mcc_code = models.ForeignKey(Mcc, on_delete=models.CASCADE, null=True)

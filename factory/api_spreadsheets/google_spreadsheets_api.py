@@ -80,4 +80,3 @@ def create_mcc(path=env.str('URL')):
     Mcc.objects.bulk_create([Mcc(**r) for r in d])
 
 
-
